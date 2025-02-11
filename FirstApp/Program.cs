@@ -18,7 +18,26 @@ namespace FirstApp
             Console.WriteLine("My shoe size is " + MyShoeSize);
             Console.WriteLine("IntMin {0} ", int.MinValue);
             Console.WriteLine("IntMax {0} ", int.MaxValue);
-            Console.WriteLine("Завершение юнита 3.3. Основные типы данных");
+
+            DaysOfWeek MyFavoriteDay;
+            MyFavoriteDay = DaysOfWeek.Monday;
+            Console.WriteLine(MyFavoriteDay);
+        }
+        enum DaysOfWeek : byte
+        {
+            Monday,
+            Tuesday,
+            Wednesday,
+            Thursday,
+            Friday,
+            Saturday,
+            Sanday
+        }
+        enum Semaphore
+        {
+            Red = 100,
+            Yellow = 200,
+            Green = 300
         }
     }
 }
