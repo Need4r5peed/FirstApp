@@ -7,13 +7,35 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            double result1 = 5.0 / 2;
-            double result2 = 5.0 % 2;
-            Console.WriteLine("5.0 / 2 = {0}", result1);
-            Console.WriteLine("5.0 % 2.0 = {0}", result2);
 
-            double result3 = 10 % 3;
-            Console.WriteLine("10 % 3 = {0}", result3);
+            Console.Write("Enter your name: ");
+            string name = Console.ReadLine();
+            Console.Write("Enter your age: ");
+            byte age = checked((byte)int.Parse(Console.ReadLine()));
+            Console.WriteLine("Your name is {0} and age is {1} ", name, age);
+            Console.Write("What is your favorite day of week?: ");
+            Day day = checked((Day)int.Parse(Console.ReadLine()));
+            Console.WriteLine("Your favorite day is {0} ", day);
+
+            //Console.Write("Введите имя: ");
+            //var name1 = Console.ReadLine();
+            //Console.Write("Введите ваш возраст: ");
+            //var age1 = Convert.ToInt32(Console.ReadLine());
+            //Console.Write("Введите вашу дату рождения: ");
+            //var birthdate = Console.ReadLine();
+
+            Console.ReadKey();
+        }
+
+        enum Day : byte
+        {
+            Monday = 1,
+            Tuesday,
+            Wednesday,
+            Thursday,
+            Friday,
+            Saturday,
+            Sanday
         }
     }
 }
