@@ -22,6 +22,12 @@ namespace FirstApp
             DaysOfWeek MyFavoriteDay;
             MyFavoriteDay = DaysOfWeek.Monday;
             Console.WriteLine(MyFavoriteDay);
+
+            var name = "Jane";
+            var age = 27;
+            var favcolor = "black";
+            Console.WriteLine("{0}\n\t{1}\n{2}", name, age, favcolor);
+
         }
         enum DaysOfWeek : byte
         {
