@@ -7,24 +7,32 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
 
-            Console.Write("Enter your name: ");
-            string name = Console.ReadLine();
-            Console.Write("Enter your age: ");
-            byte age = checked((byte)int.Parse(Console.ReadLine()));
-            Console.WriteLine("Your name is {0} and age is {1} ", name, age);
-            Console.Write("What is your favorite day of week?: ");
-            Day day = checked((Day)int.Parse(Console.ReadLine()));
-            Console.WriteLine("Your favorite day is {0} ", day);
+            var color = Console.ReadLine();
 
-            //Console.Write("Введите имя: ");
-            //var name1 = Console.ReadLine();
-            //Console.Write("Введите ваш возраст: ");
-            //var age1 = Convert.ToInt32(Console.ReadLine());
-            //Console.Write("Введите вашу дату рождения: ");
-            //var birthdate = Console.ReadLine();
+            if (color == "red")
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Black;
 
-            Console.ReadKey();
+                Console.WriteLine("Your color is red!");
+            }
+
+            else if (color == "green")
+            {
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Black;
+
+                Console.WriteLine("Your color is green!");
+            }
+            else
+            {
+                Console.BackgroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = ConsoleColor.Black;
+
+                Console.WriteLine("Your color is cyan!");
+            }
         }
 
         enum Day : byte
