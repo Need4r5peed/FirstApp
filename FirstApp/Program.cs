@@ -8,117 +8,72 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("while ...");
+            //Console.WriteLine("while ...");
 
-            int k = 0;
+            //int k = 0;
 
-            while (true)
+            //while (true)
+            //{
+            //    Console.WriteLine(k);
+
+            //    Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
+
+            //    var color = Console.ReadLine();
+
+            //    if (color == "stop")
+            //    {
+            //        Console.WriteLine("Цикл остановлен");
+            //        break;
+            //    }
+
+            //    switch (color)
+            //    {
+            //        case "red":
+            //        case "Red":
+            //            Console.BackgroundColor = ConsoleColor.Red;
+            //            Console.ForegroundColor = ConsoleColor.Black;
+
+            //            Console.WriteLine("Your color is red!");
+            //            break;
+
+            //        case "green":
+            //        case "Green":
+            //            Console.BackgroundColor = ConsoleColor.Green;
+            //            Console.ForegroundColor = ConsoleColor.Black;
+
+            //            Console.WriteLine("Your color is green!");
+            //            break;
+
+            //        case "cyan":
+            //        case "Cyan":
+            //            Console.BackgroundColor = ConsoleColor.Cyan;
+            //            Console.ForegroundColor = ConsoleColor.Black;
+
+            //            Console.WriteLine("Your color is green!");
+            //            break;
+
+            //        default:
+            //            Console.BackgroundColor = ConsoleColor.Yellow;
+            //            Console.ForegroundColor = ConsoleColor.Red;
+
+            //            Console.WriteLine("Your color is yellow!");
+            //            break;
+            //    }
+
+            //    k++;
+            //}
+
+            Console.WriteLine("Введите своё имя:");
+
+            string youName = Console.ReadLine();
+
+            Console.WriteLine("Ваше имя по буквам:");
+
+            foreach (var nameSimbol in youName)
             {
-                Console.WriteLine(k);
-
-                Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
-
-                var color = Console.ReadLine();
-
-                if (color == "stop")
-                {
-                    Console.WriteLine("Цикл остановлен");
-                    break;
-                }
-
-                switch (color)
-                {
-                    case "red":
-                    case "Red":
-                        Console.BackgroundColor = ConsoleColor.Red;
-                        Console.ForegroundColor = ConsoleColor.Black;
-
-                        Console.WriteLine("Your color is red!");
-                        break;
-
-                    case "green":
-                    case "Green":
-                        Console.BackgroundColor = ConsoleColor.Green;
-                        Console.ForegroundColor = ConsoleColor.Black;
-
-                        Console.WriteLine("Your color is green!");
-                        break;
-
-                    case "cyan":
-                    case "Cyan":
-                        Console.BackgroundColor = ConsoleColor.Cyan;
-                        Console.ForegroundColor = ConsoleColor.Black;
-
-                        Console.WriteLine("Your color is green!");
-                        break;
-
-                    default:
-                        Console.BackgroundColor = ConsoleColor.Yellow;
-                        Console.ForegroundColor = ConsoleColor.Red;
-
-                        Console.WriteLine("Your color is yellow!");
-                        break;
-                }
-
-                k++;
-
+                Console.Write(nameSimbol + " ");
             }
-
-            Console.WriteLine("do...while");
-
-            int t = 0;
-
-            do
-            {
-                Console.WriteLine(t);
-
-                Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
-
-                var color = Console.ReadLine();
-
-                if (color == "stop")
-                {
-                    Console.WriteLine("Цикл остановлен");
-                    break;
-                }
-
-                switch (color)
-                {
-                    case "red":
-                    case "Red":
-                        Console.BackgroundColor = ConsoleColor.Red;
-                        Console.ForegroundColor = ConsoleColor.Black;
-
-                        Console.WriteLine("Your color is red!");
-                        break;
-
-                    case "green":
-                    case "Green":
-                        Console.BackgroundColor = ConsoleColor.Green;
-                        Console.ForegroundColor = ConsoleColor.Black;
-
-                        Console.WriteLine("Your color is green!");
-                        break;
-
-                    case "cyan":
-                    case "Cyan":
-                        Console.BackgroundColor = ConsoleColor.Cyan;
-                        Console.ForegroundColor = ConsoleColor.Black;
-
-                        Console.WriteLine("Your color is green!");
-                        break;
-
-                    default:
-                        Console.BackgroundColor = ConsoleColor.Yellow;
-                        Console.ForegroundColor = ConsoleColor.Red;
-
-                        Console.WriteLine("Your color is yellow!");
-                        break;
-                }
-
-                t++;
-
-            } while (true);
+            Console.Write("Последняя буква вашего имени: {0}", youName[youName.Length - 1]);
         }
 
         enum Day : byte
