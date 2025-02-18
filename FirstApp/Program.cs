@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace FirstApp
 {
@@ -7,43 +8,117 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
+            Console.WriteLine("while ...");
 
-            var color = Console.ReadLine();
+            int k = 0;
 
-            switch (color)
+            while (true)
             {
-                case "red":
-                case "Red":
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine(k);
 
-                    Console.WriteLine("Your color is red!");
+                Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
+
+                var color = Console.ReadLine();
+
+                if (color == "stop")
+                {
+                    Console.WriteLine("Цикл остановлен");
                     break;
+                }
 
-                case "green":
-                case "Green":
-                    Console.BackgroundColor = ConsoleColor.Green;
-                    Console.ForegroundColor = ConsoleColor.Black;
+                switch (color)
+                {
+                    case "red":
+                    case "Red":
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.Black;
 
-                    Console.WriteLine("Your color is green!");
-                    break;
+                        Console.WriteLine("Your color is red!");
+                        break;
 
-                case "cyan":
-                case "Cyan":
-                    Console.BackgroundColor = ConsoleColor.Cyan;
-                    Console.ForegroundColor = ConsoleColor.Black;
+                    case "green":
+                    case "Green":
+                        Console.BackgroundColor = ConsoleColor.Green;
+                        Console.ForegroundColor = ConsoleColor.Black;
 
-                    Console.WriteLine("Your color is green!");
-                    break;
+                        Console.WriteLine("Your color is green!");
+                        break;
 
-                default:
-                    Console.BackgroundColor = ConsoleColor.Yellow;
-                    Console.ForegroundColor = ConsoleColor.Red;
+                    case "cyan":
+                    case "Cyan":
+                        Console.BackgroundColor = ConsoleColor.Cyan;
+                        Console.ForegroundColor = ConsoleColor.Black;
 
-                    Console.WriteLine("Your color is yellow!");
-                    break;
+                        Console.WriteLine("Your color is green!");
+                        break;
+
+                    default:
+                        Console.BackgroundColor = ConsoleColor.Yellow;
+                        Console.ForegroundColor = ConsoleColor.Red;
+
+                        Console.WriteLine("Your color is yellow!");
+                        break;
+                }
+
+                k++;
+
             }
+
+            Console.WriteLine("do...while");
+
+            int t = 0;
+
+            do
+            {
+                Console.WriteLine(t);
+
+                Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
+
+                var color = Console.ReadLine();
+
+                if (color == "stop")
+                {
+                    Console.WriteLine("Цикл остановлен");
+                    break;
+                }
+
+                switch (color)
+                {
+                    case "red":
+                    case "Red":
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.Black;
+
+                        Console.WriteLine("Your color is red!");
+                        break;
+
+                    case "green":
+                    case "Green":
+                        Console.BackgroundColor = ConsoleColor.Green;
+                        Console.ForegroundColor = ConsoleColor.Black;
+
+                        Console.WriteLine("Your color is green!");
+                        break;
+
+                    case "cyan":
+                    case "Cyan":
+                        Console.BackgroundColor = ConsoleColor.Cyan;
+                        Console.ForegroundColor = ConsoleColor.Black;
+
+                        Console.WriteLine("Your color is green!");
+                        break;
+
+                    default:
+                        Console.BackgroundColor = ConsoleColor.Yellow;
+                        Console.ForegroundColor = ConsoleColor.Red;
+
+                        Console.WriteLine("Your color is yellow!");
+                        break;
+                }
+
+                t++;
+
+            } while (true);
         }
 
         enum Day : byte
