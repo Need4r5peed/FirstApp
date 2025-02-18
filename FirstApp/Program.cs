@@ -67,13 +67,19 @@ namespace FirstApp
 
             string youName = Console.ReadLine();
 
-            Console.WriteLine("Ваше имя по буквам:");
+            string reverseName = "";
+
+            Console.WriteLine("Ваше обратное имя по буквам:");
 
             foreach (var nameSimbol in youName)
             {
+                reverseName = nameSimbol + reverseName;
+            }
+            foreach (var nameSimbol in reverseName)
+            {
                 Console.Write(nameSimbol + " ");
             }
-            Console.Write("Последняя буква вашего имени: {0}", youName[youName.Length - 1]);
+            Console.Write("Последняя буква вашего обратного имени: {0}", reverseName[reverseName.Length - 1]);
         }
 
         enum Day : byte
