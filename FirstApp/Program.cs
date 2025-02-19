@@ -8,82 +8,83 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("while ...");
+            //Console.WriteLine("Введите своё имя:");
 
-            //int k = 0;
+            //string youName = Console.ReadLine();
 
-            //while (true)
+            //string reverseName = "";
+
+            //Console.WriteLine("Ваше имя по буквам:");
+
+            //foreach (var nameSimbol in youName)
             //{
-            //    Console.WriteLine(k);
-
-            //    Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
-
-            //    var color = Console.ReadLine();
-
-            //    if (color == "stop")
-            //    {
-            //        Console.WriteLine("Цикл остановлен");
-            //        break;
-            //    }
-
-            //    switch (color)
-            //    {
-            //        case "red":
-            //        case "Red":
-            //            Console.BackgroundColor = ConsoleColor.Red;
-            //            Console.ForegroundColor = ConsoleColor.Black;
-
-            //            Console.WriteLine("Your color is red!");
-            //            break;
-
-            //        case "green":
-            //        case "Green":
-            //            Console.BackgroundColor = ConsoleColor.Green;
-            //            Console.ForegroundColor = ConsoleColor.Black;
-
-            //            Console.WriteLine("Your color is green!");
-            //            break;
-
-            //        case "cyan":
-            //        case "Cyan":
-            //            Console.BackgroundColor = ConsoleColor.Cyan;
-            //            Console.ForegroundColor = ConsoleColor.Black;
-
-            //            Console.WriteLine("Your color is green!");
-            //            break;
-
-            //        default:
-            //            Console.BackgroundColor = ConsoleColor.Yellow;
-            //            Console.ForegroundColor = ConsoleColor.Red;
-
-            //            Console.WriteLine("Your color is yellow!");
-            //            break;
-            //    }
-
-            //    k++;
+            //    reverseName = nameSimbol + reverseName;
             //}
-
-            Console.WriteLine("Введите своё имя:");
-
-            string youName = Console.ReadLine();
-
-            string reverseName = "";
-
-            Console.WriteLine("Ваше имя по буквам:");
-
-            foreach (var nameSimbol in youName)
-            {
-                reverseName = nameSimbol + reverseName;
-            }
-            //foreach (var nameSimbol in reverseName)
+            ////foreach (var nameSimbol in reverseName)
+            ////{
+            ////    Console.Write(nameSimbol + " ");
+            ////}
+            //for (int i = reverseName.Length - 1; i >= 0 ; i--)
             //{
-            //    Console.Write(nameSimbol + " ");
+            //    Console.Write(reverseName[i] + " ");
             //}
-            for (int i = reverseName.Length - 1; i >= 0 ; i--)
+            //Console.Write("Последняя буква вашего обратного имени: {0}", reverseName[0]);
+
+            int[,] array = { { 1, 2, 3 }, { 5, 6, 7 }, { 8, 9, 10 }, { 11, 12, 13 } };
+            Console.WriteLine("Массив: { { 1, 2, 3 }, { 5, 6, 7 }, { 8, 9, 10 }, { 11, 12, 13 } }");
+
+            Console.WriteLine();
+            Console.WriteLine("Перепор по строкам:");
+            for (int i = 0; i < array.GetUpperBound(0) + 1; i++)
             {
-                Console.Write(reverseName[i] + " ");
+                for (int k = 0; k < array.GetUpperBound(1) + 1; k++)
+                    Console.Write(array[i, k] + " ");
+
+                Console.WriteLine();
             }
-            Console.Write("Последняя буква вашего обратного имени: {0}", reverseName[0]);
+
+            Console.WriteLine();
+            Console.WriteLine("Перепор по столбцам:");
+            for (int i = 0; i < array.GetUpperBound(1) + 1; i++)
+            {
+                for (int k = 0; k < array.GetUpperBound(0) + 1; k++)
+                    Console.Write(array[k, i] + " ");
+
+                Console.WriteLine();
+            }
+
+            var arr = new int[] { 5, 6, 9, 1, 2, 3, 4 };
+            Console.WriteLine();
+            Console.WriteLine("Массив: { 5, 6, 9, 1, 2, 3, 4 }");
+
+            Console.WriteLine();
+            Console.WriteLine("Сортировка интовых элементов одномерного массива в порядке возрастания:");
+            var arrItog = new int[arr.Length];
+
+            int w = 0;
+            while (w != -1 * (arr.Length - 1))
+            {
+                w = 0;
+                for (int i = 0; i <= arr.Length - 2; i++)
+                {
+                    int a = arr[i];
+                    int b = arr[i + 1];
+                    if (arr[i] > arr[i + 1])
+                    {
+                        arr[i] = b;
+                        arr[i + 1] = a;
+                        w++;
+                    }
+                    else
+                    {
+                        w--;
+                    }
+                }
+            }
+            foreach (var number in arr)
+            {
+                Console.Write(number + " ");
+            }
         }
 
         enum Day : byte
