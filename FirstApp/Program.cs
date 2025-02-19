@@ -85,6 +85,20 @@ namespace FirstApp
             {
                 Console.Write(number + " ");
             }
+            Console.WriteLine();
+
+            var arrSum = new int[] { 5, 6, 9, 1, 2, 3, 4 };
+            Console.WriteLine();
+            Console.WriteLine("Массив: { 5, 6, 9, 1, 2, 3, 4 }");
+
+            Console.WriteLine();
+            Console.WriteLine("Сумма всех элементов массива:");
+            int sum = 0;
+            for (int i = 0; i <= arrSum.Length - 1; i++)
+            {
+                sum = sum + arrSum[i];
+            }
+            Console.WriteLine(sum);
         }
 
         enum Day : byte
