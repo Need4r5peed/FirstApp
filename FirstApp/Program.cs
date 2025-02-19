@@ -99,6 +99,24 @@ namespace FirstApp
                 sum = sum + arrSum[i];
             }
             Console.WriteLine(sum);
+
+            Console.WriteLine();
+            Console.WriteLine("Зубчатые массивы:");
+            int[][] arrayZub = new int[3][];
+            arrayZub[0] = new int[2] { 1, 2 };
+            arrayZub[1] = new int[3] { 1, 2, 3 };
+            arrayZub[2] = new int[5] { 1, 2, 3, 4, 5 };
+            Console.WriteLine("Массив: { { 1, 2 }, { 1, 2, 3 }, { 1, 2, 3, 4, 5 } }");
+
+            Console.WriteLine();
+            Console.WriteLine("Перебор массива:");
+            foreach (var elementarrayZub in arrayZub)
+            {
+                foreach (var item in elementarrayZub)
+                {
+                    Console.Write(item + " ");
+                }
+            }
         }
 
         enum Day : byte
