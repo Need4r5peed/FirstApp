@@ -69,17 +69,21 @@ namespace FirstApp
 
             string reverseName = "";
 
-            Console.WriteLine("Ваше обратное имя по буквам:");
+            Console.WriteLine("Ваше имя по буквам:");
 
             foreach (var nameSimbol in youName)
             {
                 reverseName = nameSimbol + reverseName;
             }
-            foreach (var nameSimbol in reverseName)
+            //foreach (var nameSimbol in reverseName)
+            //{
+            //    Console.Write(nameSimbol + " ");
+            //}
+            for (int i = reverseName.Length - 1; i >= 0 ; i--)
             {
-                Console.Write(nameSimbol + " ");
+                Console.Write(reverseName[i] + " ");
             }
-            Console.Write("Последняя буква вашего обратного имени: {0}", reverseName[reverseName.Length - 1]);
+            Console.Write("Последняя буква вашего обратного имени: {0}", reverseName[0]);
         }
 
         enum Day : byte
