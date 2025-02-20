@@ -7,33 +7,61 @@ namespace FirstApp
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static string ShowColor()
         {
-            (string Name, string[] Dishes) User;
+            Console.WriteLine("Напишите свой любимый цвет на английском с маленькой буквы");
+            var color = Console.ReadLine();
 
-            for (int x = 1; x <= 3; x++)
+            switch (color)
             {
-                Console.WriteLine("Введите имя");
-                User.Name = Console.ReadLine();
+                case "red":
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Black;
 
-                User.Dishes = new string[5];
-                Console.WriteLine("Введите три любимых блюда:");
-                for (int i = 0; i < User.Dishes.Length; i++)
-                {
-                    User.Dishes[i] = Console.ReadLine();
-                }
+                    Console.WriteLine("Your color is red!");
+                    break;
+
+                case "green":
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Black;
+
+                    Console.WriteLine("Your color is green!");
+                    break;
+                case "cyan":
+                    Console.BackgroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Black;
+
+                    Console.WriteLine("Your color is cyan!");
+                    break;
+                default:
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Red;
+
+                    Console.WriteLine("Your color is yellow!");
+                    break;
             }
+            return color;
         }
 
-        enum Day : byte
+        public static void Main(string[] args)
         {
-            Monday = 1,
-            Tuesday,
-            Wednesday,
-            Thursday,
-            Friday,
-            Saturday,
-            Sanday
+
+            var (name, age) = ("Евгения", 27);
+
+            Console.WriteLine("Мое имя: {0}", name);
+            Console.WriteLine("Мой возраст: {0}", age);
+
+            Console.Write("Введите имя: ");
+            name = Console.ReadLine();
+            Console.Write("Введите возрас с цифрами:");
+            age = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Ваше имя: {0}", name);
+            Console.WriteLine("Ваш возраст: {0}", age);
+
+            ShowColor();
+
+
         }
     }
 }
