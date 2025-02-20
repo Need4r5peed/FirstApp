@@ -8,15 +8,7 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            (string Name, string Type, double Age, int NameCount) Pet;
-
-            Console.Write("Введите имя питомца: ");
-            Pet.Name = Console.ReadLine();
-            Console.Write("Введите вид питомца: ");
-            Pet.Type = Console.ReadLine();
-            Console.Write("Введите возраст питомца: ");
-            Pet.Age = Convert.ToInt32(Console.ReadLine());
-            Pet.NameCount = Pet.Name.Length;
+            (string Name, string LastName, string Login, int LoginLength, bool ExistencePet, double Age, string[] FavColors) User;
         }
 
         enum Day : byte
