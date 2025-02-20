@@ -20,6 +20,9 @@ namespace FirstApp
             Console.WriteLine("Введите логин");
             User.Login = Console.ReadLine();
 
+            //Длинна пароля:
+            User.LoginLength = User.Login.Length;
+
         }
 
         enum Day : byte
