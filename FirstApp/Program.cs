@@ -117,6 +117,26 @@ namespace FirstApp
                     Console.Write(item + " ");
                 }
             }
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Задача по поиску количества положительных элементов в массиве:");
+            var arrSearchPositive = new int[] { 5, 6, -9, 1, 2, -3, 4, 0 };
+            Console.WriteLine("Массив: {{ 5, 6, -9, 1, 2, -3, 4, 0 }}");
+
+            Console.WriteLine();
+            Console.Write("Количество положительных элементов:");
+            int SearchPositive = 0;
+            int arrElements = arrSearchPositive.Length - 1;
+            while (arrElements != -1)
+            {
+                if (arrSearchPositive[arrElements] > 0)
+                {
+                    SearchPositive++;
+                }
+                arrElements--;
+            }
+            Console.WriteLine("\t" + SearchPositive);
         }
 
         enum Day : byte
