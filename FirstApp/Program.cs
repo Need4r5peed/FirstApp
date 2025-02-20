@@ -137,6 +137,27 @@ namespace FirstApp
                 arrElements--;
             }
             Console.WriteLine("\t" + SearchPositive);
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Задача по поиску количества положительных элементов в двумерном массиве:");
+            int[,] bivariatearrSearchPositive = { { -5, 6, 9, 1, 2, -3 }, { -8, 8, 1, 1, 2, -3 } };
+            Console.WriteLine("Массив: { { -5, 6, 9, 1, 2, -3 }, { -8, 8, 1, 1, 2, -3 } }");
+
+            Console.WriteLine();
+            Console.Write("Количество положительных элементов:");
+            int bSearchPositive = 0;
+            for (int i = 0; i < bivariatearrSearchPositive.GetUpperBound(0) + 1; i++)
+            {
+                for (int j = 0; j < bivariatearrSearchPositive.GetUpperBound(1) + 1; j++)
+                {
+                    if (bivariatearrSearchPositive[i, j] > 0)
+                    {
+                        bSearchPositive++;
+                    }
+                }
+            }
+            Console.WriteLine("\t" + bSearchPositive);
         }
 
         enum Day : byte
