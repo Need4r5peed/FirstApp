@@ -158,6 +158,45 @@ namespace FirstApp
                 }
             }
             Console.WriteLine("\t" + bSearchPositive);
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Задача по сортировке элементов по возрастанию в двумерном массиве:");
+            int[,] bivariatearrSort = { { -5, 6, 9, 1, 2, -3 }, { -8, 8, 1, 1, 2, -3 } };
+            Console.WriteLine("Массив: { { -5, 6, 9, 1, 2, -3 }, { -8, 8, 1, 1, 2, -3 } }");
+
+            Console.WriteLine();
+            Console.WriteLine("Сортировка по строкам:");
+            for (int i = 0; i < bivariatearrSort.GetUpperBound(0) + 1; i++)
+            {
+                int ww = 0;
+                while (ww != -1 * (bivariatearrSort.GetUpperBound(1)))
+                {
+                    ww = 0;
+                    for (int j = 0; j <= bivariatearrSort.GetUpperBound(1) - 1; j++)
+                    {
+                        int a = bivariatearrSort[i, j];
+                        int b = bivariatearrSort[i, j + 1];
+                        if (bivariatearrSort[i, j] > bivariatearrSort[i, j + 1])
+                        {
+                            bivariatearrSort[i, j]  = b;
+                            bivariatearrSort[i, j + 1] = a;
+                            ww++;
+                        }
+                        else
+                        {
+                            ww--;
+                        }
+                    }
+                }
+            }
+            for (int i = 0; i < bivariatearrSort.GetUpperBound(0) + 1; i++)
+            {
+                for (int k = 0; k < bivariatearrSort.GetUpperBound(1) + 1; k++)
+                    Console.Write(bivariatearrSort[i, k] + " ");
+
+                Console.WriteLine();
+            }
         }
 
         enum Day : byte
