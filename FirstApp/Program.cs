@@ -61,19 +61,58 @@ namespace FirstApp
 
             //ShowColor();
 
-            var favcolors = new string[3];
+            //var favcolors = new string[3];
 
-            for (int i = 0; i < favcolors.Length; i++)
+            //for (int i = 0; i < favcolors.Length; i++)
+            //{
+            //    favcolors[i] = ShowColor();
+            //}
+
+            //Console.WriteLine("Ваши любимые цвета:");
+            //foreach (var color in favcolors)
+            //{
+            //    Console.WriteLine(color);
+            //}
+
+            static int[] GetArrayFromConsole()
             {
-                favcolors[i] = ShowColor();
+                var result = new int[5];
+
+                for (int i = 0; i < result.Length; i++)
+                {
+                    Console.WriteLine("Введите элемент массива номер {0}", i + 1);
+                    result[i] = int.Parse(Console.ReadLine());
+                }
+
+                int w = 0;
+                while (w != -1 * (result.Length - 1))
+                {
+                    w = 0;
+                    for (int i = 0; i <= result.Length - 2; i++)
+                    {
+                        int a = result[i];
+                        int b = result[i + 1];
+                        if (result[i] > result[i + 1])
+                        {
+                            result[i] = b;
+                            result[i + 1] = a;
+                            w++;
+                        }
+                        else
+                        {
+                            w--;
+                        }
+                    }
+                }
+                foreach (var number in result)
+                {
+                    Console.Write(number + " ");
+                }
+
+                return result;
             }
 
-            Console.WriteLine("Ваши любимые цвета:");
-            foreach (var color in favcolors)
-            {
-                Console.WriteLine(color);
-            }
-
-        }
+            GetArrayFromConsole();
+        }    
     }
 }
