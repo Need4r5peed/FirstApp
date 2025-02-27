@@ -124,9 +124,9 @@ namespace FirstApp
             }
 
             GetArrayFromConsole();
-            static int[] GetArrayFromConsoleOnly() // должен читать введенные с клавиатуры массивы и возвращать их
+            static int[] GetArrayFromConsoleOnly(int num = 5) // должен читать введенные с клавиатуры массивы и возвращать их
             {
-                var result = new int[5];
+                var result = new int[num];
 
                 for (int i = 0; i < result.Length; i++)
                 {
