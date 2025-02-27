@@ -185,6 +185,9 @@ namespace FirstApp
             //Задание 5.2.15
             var array = GetArrayFromConsoleOnly(3);
             var sortedarray = SortArray(array);
+
+            var array2 = GetArrayFromConsoleOnly(10);
+            ShowArray(array2, true);
         }
     }
 }
