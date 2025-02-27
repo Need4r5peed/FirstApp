@@ -44,6 +44,87 @@ namespace FirstApp
             return color;
         }
 
+        static int[] GetArrayFromConsole() // Добавление по одному элементу в массив, вместимостью в 5 интовых элементов, сортировка элементов массива по возрастанию и вывод массива в отсортированном виде на консоль
+        {
+            var result = new int[5];
+
+            for (int i = 0; i < result.Length; i++)
+            {
+                Console.WriteLine("Введите элемент массива номер {0}", i + 1);
+                result[i] = int.Parse(Console.ReadLine());
+            }
+
+            int w = 0;
+            while (w != -1 * (result.Length - 1))
+            {
+                w = 0;
+                for (int i = 0; i <= result.Length - 2; i++)
+                {
+                    int a = result[i];
+                    int b = result[i + 1];
+                    if (result[i] > result[i + 1])
+                    {
+                        result[i] = b;
+                        result[i + 1] = a;
+                        w++;
+                    }
+                    else
+                    {
+                        w--;
+                    }
+                }
+            }
+            foreach (var number in result)
+            {
+                Console.Write(number + " ");
+            }
+
+            return result;
+        }
+
+        static int[] GetArrayFromConsoleOnly(int num = 5) // должен читать введенные с клавиатуры массивы и возвращать их
+        {
+            var result = new int[num];
+
+            for (int i = 0; i < result.Length; i++)
+            {
+                Console.WriteLine("Введите элемент массива номер {0}", i + 1);
+                result[i] = int.Parse(Console.ReadLine());
+            }
+
+            return result;
+        }
+
+        static int[] SortArray(int[] result) // должен принимать параметром массив array типа данных int, сортировать его и возвращать
+        {
+            int w = 0;
+            while (w != -1 * (result.Length - 1))
+            {
+                w = 0;
+                for (int i = 0; i <= result.Length - 2; i++)
+                {
+                    int a = result[i];
+                    int b = result[i + 1];
+                    if (result[i] > result[i + 1])
+                    {
+                        result[i] = b;
+                        result[i + 1] = a;
+                        w++;
+                    }
+                    else
+                    {
+                        w--;
+                    }
+                }
+            }
+            //foreach (var number in result)
+            //{
+            //    Console.Write(number + " ");
+            //}
+
+            return result;
+        }
+
         public static void Main(string[] args)
         {
 
@@ -85,87 +166,9 @@ namespace FirstApp
             //    Console.WriteLine(color);
             //}
 
-            static int[] GetArrayFromConsole() // Добавление по одному элементу в массив, вместимостью в 5 интовых элементов, сортировка элементов массива по возрастанию и вывод массива в отсортированном виде на консоль
-            {
-                var result = new int[5];
-
-                for (int i = 0; i < result.Length; i++)
-                {
-                    Console.WriteLine("Введите элемент массива номер {0}", i + 1);
-                    result[i] = int.Parse(Console.ReadLine());
-                }
-
-                int w = 0;
-                while (w != -1 * (result.Length - 1))
-                {
-                    w = 0;
-                    for (int i = 0; i <= result.Length - 2; i++)
-                    {
-                        int a = result[i];
-                        int b = result[i + 1];
-                        if (result[i] > result[i + 1])
-                        {
-                            result[i] = b;
-                            result[i + 1] = a;
-                            w++;
-                        }
-                        else
-                        {
-                            w--;
-                        }
-                    }
-                }
-                foreach (var number in result)
-                {
-                    Console.Write(number + " ");
-                }
-
-                return result;
-            }
-
-            GetArrayFromConsole();
-            static int[] GetArrayFromConsoleOnly(int num = 5) // должен читать введенные с клавиатуры массивы и возвращать их
-            {
-                var result = new int[num];
-
-                for (int i = 0; i < result.Length; i++)
-                {
-                    Console.WriteLine("Введите элемент массива номер {0}", i + 1);
-                    result[i] = int.Parse(Console.ReadLine());
-                }
-
-                return result;
-            }
-
-            static int[] SortArray(int[] result) // должен принимать параметром массив array типа данных int, сортировать его и возвращать
-            {
-                int w = 0;
-                while (w != -1 * (result.Length - 1))
-                {
-                    w = 0;
-                    for (int i = 0; i <= result.Length - 2; i++)
-                    {
-                        int a = result[i];
-                        int b = result[i + 1];
-                        if (result[i] > result[i + 1])
-                        {
-                            result[i] = b;
-                            result[i + 1] = a;
-                            w++;
-                        }
-                        else
-                        {
-                            w--;
-                        }
-                    }
-                }
-                //foreach (var number in result)
-                //{
-                //    Console.Write(number + " ");
-                //}
-
-                return result;
-            }
-        }    
+            //Задание 5.2.15
+            var array = GetArrayFromConsoleOnly(3);
+            var sortedarray = SortArray(array);
+        }
     }
 }
