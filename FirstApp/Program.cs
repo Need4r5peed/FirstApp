@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Threading.Channels;
 using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FirstApp
 {
@@ -123,6 +125,20 @@ namespace FirstApp
             //}
 
             return result;
+        }
+
+        static void ShowArray(int[] arrayShow, bool boolSortAttribute = false)
+        {
+            int[] resultArrayShow = arrayShow;
+
+            if (boolSortAttribute == true)
+            {
+                resultArrayShow = SortArray(arrayShow);
+            }
+            foreach (var number in resultArrayShow)
+            {
+                Console.Write(number + " ");
+            }
         }
 
         public static void Main(string[] args)
