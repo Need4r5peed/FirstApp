@@ -141,6 +141,25 @@ namespace FirstApp
             }
         }
 
+        static void GetName(string name)
+        {
+            Console.WriteLine("Введите имя");
+            name = Console.ReadLine();
+
+        }
+
+        static void ChangeName(ref string age)
+        {
+            Console.WriteLine("Введите свой возраст");
+            age = Console.ReadLine();
+        }
+
+        static void ChangeAge(string age)
+        {
+            Console.WriteLine("Введите свой возраст");
+            age = Console.ReadLine();
+        }
+
         public static void Main(string[] args)
         {
 
@@ -183,11 +202,19 @@ namespace FirstApp
             //}
 
             //Задание 5.2.15
-            var array = GetArrayFromConsoleOnly(3);
-            var sortedarray = SortArray(array);
+            //var array = GetArrayFromConsoleOnly(3);
+            //var sortedarray = SortArray(array);
 
-            var array2 = GetArrayFromConsoleOnly(10);
-            ShowArray(array2, true);
+            //var array2 = GetArrayFromConsoleOnly(10);
+            //ShowArray(array2, true);
+            var someName = "Leo";
+            Console.WriteLine(someName);
+
+            GetName(someName);
+            Console.WriteLine(someName);
+
+            ChangeName(ref someName);
+            Console.WriteLine(someName);
         }
     }
 }
