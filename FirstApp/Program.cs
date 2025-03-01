@@ -223,6 +223,19 @@ namespace FirstApp
             arr[0] = data;
         }
 
+        static int SumNumbers(ref int num1, in int num2, out int num3, int num4)
+        {
+            // Изменяем num1 (переданное по ссылке)
+            num1 = num2;
+
+            // num2 передается по ссылке, но не изменяется
+            // num3 будет результатом суммирования num1 и num2
+            num3 = num1 + num2;
+
+            // Возвращаем результат умножения num3 на num4
+            return num3 * num4;
+        }
+
         public static void Main(string[] args)
         {
 
