@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading.Channels;
 using System.Xml.Linq;
@@ -97,7 +98,38 @@ namespace FirstApp
             return result;
         }
 
-        static int[] SortArray(int[] result) // должен принимать параметром массив array типа данных int, сортировать его и возвращать
+        static void SortArray(in int[] result, out int[] sorteddesc, out int[] sortedasc) // должен принимать параметром массив array типа данных int, сортировать его и возвращать
+        {
+            sorteddesc = SortArrayDesc(result);
+            sortedasc = SortArrayAsc(result);
+        }
+
+        static int[] SortArrayDesc(int[] result) // должен принимать параметром массив array типа данных int, сортировать его и возвращать
+        {
+            int w = 0;
+            while (w != -1 * (result.Length - 1))
+            {
+                w = 0;
+                for (int i = 0; i <= result.Length - 2; i++)
+                {
+                    int a = result[i];
+                    int b = result[i + 1];
+                    if (result[i] < result[i + 1])
+                    {
+                        result[i] = b;
+                        result[i + 1] = a;
+                        w++;
+                    }
+                    else
+                    {
+                        w--;
+                    }
+                }
+            }
+            return result;
+        }
+
+        static int[] SortArrayAsc(int[] result) // должен принимать параметром массив array типа данных int, сортировать его и возвращать
         {
             int w = 0;
             while (w != -1 * (result.Length - 1))
@@ -119,27 +151,22 @@ namespace FirstApp
                     }
                 }
             }
-            //foreach (var number in result)
-            //{
-            //    Console.Write(number + " ");
-            //}
-
             return result;
         }
 
-        static void ShowArray(int[] arrayShow, bool boolSortAttribute = false)
-        {
-            int[] resultArrayShow = arrayShow;
+        //static void ShowArray(int[] arrayShow, bool boolSortAttribute = false)
+        //{
+        //    int[] resultArrayShow = arrayShow;
 
-            if (boolSortAttribute == true)
-            {
-                resultArrayShow = SortArray(arrayShow);
-            }
-            foreach (var number in resultArrayShow)
-            {
-                Console.Write(number + " ");
-            }
-        }
+        //    if (boolSortAttribute == true)
+        //    {
+        //        resultArrayShow = SortArray(arrayShow);
+        //    }
+        //    foreach (var number in resultArrayShow)
+        //    {
+        //        Console.Write(number + " ");
+        //    }
+        //}
 
         static void GetName(string name)
         {
