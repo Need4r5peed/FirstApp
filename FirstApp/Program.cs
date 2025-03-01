@@ -84,7 +84,7 @@ namespace FirstApp
             return result;
         }
 
-        static int[] GetArrayFromConsoleOnly(int num = 5) // должен читать введенные с клавиатуры массивы и возвращать их
+        static int[] GetArrayFromConsoleOnly(ref int num) // должен читать введенные с клавиатуры массивы и возвращать их
         {
             var result = new int[num];
 
@@ -150,14 +150,77 @@ namespace FirstApp
 
         static void ChangeName(ref string age)
         {
-            Console.WriteLine("Введите свой возраст");
+            Console.WriteLine("Введите имя");
             age = Console.ReadLine();
         }
 
-        static void ChangeAge(string age)
+        static void GetAge(int age)
         {
             Console.WriteLine("Введите свой возраст");
-            age = Console.ReadLine();
+            age = Int32.Parse(Console.ReadLine());
+        }
+
+        static void ChangeAge(ref int age)
+        {
+            Console.WriteLine("Введите свой возраст");
+            age = Int32.Parse(Console.ReadLine());
+        }
+
+        static void BigDataOperationV1(int[] arr)
+        {
+            arr[0] = 4;
+        }
+
+        static void BigDataOperationV2(ref int[] arr)
+        {
+            arr[0] = 4;
+        }
+
+        static void BigDataOperationV3(in int[] arr)
+        {
+            arr[0] = 4;
+        }
+
+        static void BigDataOperationV4(int[] arr, int data)
+        {
+            data = 4;
+
+            arr[0] = data;
+        }
+
+        static void BigDataOperationV5(int[] arr, ref int data)
+        {
+            data = 4;
+
+            arr[0] = data;
+        }
+
+        static void BigDataOperationV6(ref int[] arr, int data)
+        {
+            data = 4;
+
+            arr[0] = data;
+        }
+
+        static void BigDataOperationV7(ref int[] arr, ref int data)
+        {
+            data = 4;
+
+            arr[0] = data;
+        }
+
+        static void BigDataOperationV8(in int[] arr, int data)
+        {
+            data = 4;
+
+            arr[0] = data;
+        }
+
+        static void BigDataOperationV9(in int[] arr, ref int data)
+        {
+            data = 4;
+
+            arr[0] = data;
         }
 
         public static void Main(string[] args)
@@ -207,14 +270,54 @@ namespace FirstApp
 
             //var array2 = GetArrayFromConsoleOnly(10);
             //ShowArray(array2, true);
-            var someName = "Leo";
-            Console.WriteLine(someName);
 
-            GetName(someName);
-            Console.WriteLine(someName);
+            //var someName = "Leo";
+            //Console.WriteLine(someName);
 
-            ChangeName(ref someName);
-            Console.WriteLine(someName);
+            //var someAge = 18;
+            //Console.WriteLine(someAge);
+
+            //GetAge(someAge);
+            //Console.WriteLine(someAge);
+
+            //GetName(someName);
+            //Console.WriteLine(someName);
+
+            //ChangeAge(ref someAge);
+            //Console.WriteLine(someAge);
+
+            //ChangeName(ref someName);
+            //Console.WriteLine(someName);
+
+            var arr = new int[] { 1, 2, 3 };
+            var data = 5;
+
+            //BigDataOperationV1(arr);
+            //Console.WriteLine(arr[0]);
+
+            //BigDataOperationV2(ref arr);
+            //Console.WriteLine(arr[0]);
+
+            //BigDataOperationV3(arr);
+            //Console.WriteLine(arr[0]);
+
+            //BigDataOperationV4(arr, data);
+            //Console.WriteLine(arr[0]);
+
+            //BigDataOperationV5(arr, ref data);
+            //Console.WriteLine(arr[0]);
+
+            //BigDataOperationV6(ref arr, data);
+            //Console.WriteLine(arr[0]);
+
+            //BigDataOperationV7(ref arr, ref data);
+            //Console.WriteLine(arr[0]);
+
+            //BigDataOperationV8(arr, data);
+            //Console.WriteLine(arr[0]);
+
+            BigDataOperationV9(arr, ref data);
+            Console.WriteLine(arr[0]);
         }
     }
 }
