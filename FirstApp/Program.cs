@@ -263,8 +263,29 @@ namespace FirstApp
             return num3 * num4;
         }
 
+        static void Echo(string saidworld, int deep)
+        {
+            var modif = saidworld;
+
+            if (modif.Length > 2) {
+                modif = modif.Remove(0, 2);
+            }
+            Console.WriteLine("..." + modif);
+            if (deep > 1)
+            {
+                Echo(modif, deep - 1);
+            }
+        }
+
         public static void Main(string[] args)
         {
+            Console.WriteLine("Напишите что-то");
+            var str = Console.ReadLine();
+
+            Console.WriteLine("Укажите глубину эха");
+            var deep = int.Parse(Console.ReadLine());
+
+            Echo(str, deep);
 
             //var (name, age) = ("Евгения", 27);
 
@@ -329,8 +350,8 @@ namespace FirstApp
             //ChangeName(ref someName);
             //Console.WriteLine(someName);
 
-            var arr = new int[] { 1, 2, 3 };
-            var data = 5;
+            //var arr = new int[] { 1, 2, 3 };
+            //var data = 5;
 
             //BigDataOperationV1(arr);
             //Console.WriteLine(arr[0]);
@@ -356,8 +377,8 @@ namespace FirstApp
             //BigDataOperationV8(arr, data);
             //Console.WriteLine(arr[0]);
 
-            BigDataOperationV9(arr, ref data);
-            Console.WriteLine(arr[0]);
+            //BigDataOperationV9(arr, ref data);
+            //Console.WriteLine(arr[0]);
         }
     }
 }
