@@ -316,15 +316,28 @@ namespace FirstApp
             }
         }
 
+        static decimal Factorial(int x)
+        {
+            if (x == 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return x * Factorial(x - 1);
+            }
+        }
+
         public static void Main(string[] args)
         {
-            Console.WriteLine("Напишите что-то");
-            var str = Console.ReadLine();
+            Console.WriteLine(Factorial(20));
+            //Console.WriteLine("Напишите что-то");
+            //var str = Console.ReadLine();
 
-            Console.WriteLine("Укажите глубину эха");
-            var deep = int.Parse(Console.ReadLine());
+            //Console.WriteLine("Укажите глубину эха");
+            //var deep = int.Parse(Console.ReadLine());
 
-            Echo(str, deep);
+            //Echo(str, deep);
 
             //var (name, age) = ("Евгения", 27);
 
