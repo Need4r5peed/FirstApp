@@ -270,10 +270,49 @@ namespace FirstApp
             if (modif.Length > 2) {
                 modif = modif.Remove(0, 2);
             }
+            ShowTextColorForEcho(deep);
+            Console.ForegroundColor = (ConsoleColor)deep;
             Console.WriteLine("..." + modif);
             if (deep > 1)
             {
                 Echo(modif, deep - 1);
+            }
+        }
+
+        static void ShowTextColorForEcho(int deep)
+        {
+            switch (deep)
+            {
+                case var deep_case when deep_case >= 1 && deep_case <= 4:
+                    Console.BackgroundColor = ConsoleColor.Red;
+
+                    break;
+
+                case var deep_case when deep_case >= 5 && deep_case <= 8:
+                    Console.BackgroundColor = ConsoleColor.Green;
+
+                    break;
+                case var deep_case when deep_case >= 9 && deep_case <= 16:
+                    Console.BackgroundColor = ConsoleColor.Cyan;
+
+                    break;
+                case var deep_case when deep_case >= 17 && deep_case <= 32:
+                    Console.BackgroundColor = ConsoleColor.Magenta;
+
+                    break;
+                case var deep_case when deep_case >= 33 && deep_case <= 64:
+                    Console.BackgroundColor = ConsoleColor.Blue;
+
+                    break;
+                case var deep_case when deep_case >= 65 && deep_case <= 1000:
+                    Console.BackgroundColor = ConsoleColor.DarkGray;
+
+                    break;
+                default:
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Red;
+
+                    break;
             }
         }
 
