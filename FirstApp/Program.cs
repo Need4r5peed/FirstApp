@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading.Channels;
 using System.Xml.Linq;
@@ -11,442 +13,238 @@ namespace FirstApp
 {
     internal class Program
     {
-        static string ShowColor(string username, int age)
+        /// <summary>
+        /// Метод-анкета. Возвращает готовую анкету в виде кортежа, полученную после опроса пользователя. Выполнено по Заданию 5.6.
+        /// </summary>
+        /// <returns></returns>
+        static (string, string, int, bool, int, string[], bool, int, string[]) UserDataEntry()
         {
-            Console.WriteLine($"{username}({age} лет),{Environment.NewLine}Напишите свой любимый цвет на английском с маленькой буквы");
-            var color = Console.ReadLine();
+            (string Name, string LastName, int Age, bool Pet, int countPet, string[] petNames, bool Colors, int numberColors, string[] favoriteColors) verifiableUser;
 
-            switch (color)
+            //verifiableUser = ("", "", 0, false, 0);
+            //1. Имя
+            Console.WriteLine("Введите ваше Имя:");
+            verifiableUser.Name = CheckingTexString(Console.ReadLine());
+
+            //2. Второе имя
+            Console.WriteLine("Введите вашу фамилию:");
+            verifiableUser.LastName = CheckingTexString(Console.ReadLine());
+
+            //3. Возраст
+            Console.WriteLine("Введите ваш возраст:");
+            verifiableUser.Age = CheckingNumberInt(Console.ReadLine());
+
+            //4. Наличие питомца
+            Console.WriteLine("Есть ли у вас питомец:");
+            verifiableUser.Pet = PetsExistence(CheckingTexString(Console.ReadLine()));
+
+            //5. Количество питомцев
+            verifiableUser.countPet = 0;
+            if (verifiableUser.Pet == true)
             {
-                case "red":
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine("Введите количество питомцев:");
+                verifiableUser.countPet = CheckingNumberInt(Console.ReadLine());
+            }
 
-                    Console.WriteLine("Your color is red!");
-                    break;
+            //6. Имена питомцев
+            verifiableUser.petNames = new string[verifiableUser.countPet];
+            if (verifiableUser.countPet > 0)
+            {
+                verifiableUser.petNames = InputPetNames(verifiableUser.countPet);
+            }
 
-                case "green":
-                    Console.BackgroundColor = ConsoleColor.Green;
-                    Console.ForegroundColor = ConsoleColor.Black;
+            //7.0 Наличие любимого цвета (Добавлен самостоятельно - для логики 0 в следующих пунктах)
+            Console.WriteLine("Есть ли у вас любимый цвет:");
+            verifiableUser.Colors = ColorsExistence(CheckingTexString(Console.ReadLine()));
 
-                    Console.WriteLine("Your color is green!");
-                    break;
-                case "cyan":
-                    Console.BackgroundColor = ConsoleColor.Cyan;
-                    Console.ForegroundColor = ConsoleColor.Black;
+            //7.1 Количество любимых цветов
+            verifiableUser.numberColors = 0;
+            if (verifiableUser.Colors == true)
+            {
+                Console.WriteLine("Введите количество любимых цветов:");
+                verifiableUser.numberColors = CheckingNumberInt(Console.ReadLine());
+            }
 
-                    Console.WriteLine("Your color is cyan!");
-                    break;
+            //8. 
+            verifiableUser.favoriteColors = new string[verifiableUser.numberColors];
+            if (verifiableUser.numberColors > 0)
+            {
+                verifiableUser.favoriteColors = InputColors(verifiableUser.numberColors);
+            }
+
+            //verifiableUser = (verifiableUser.Name, verifiableUser.LastName, verifiableUser.Age, verifiableUser.Pet, verifiableUser.countPet);
+
+            return verifiableUser;
+        }
+
+        /// <summary>
+        /// Метод, размечающий пункты анкеты при её выводе на консоль.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        static string PointsOfProfile(int value)
+        {
+            switch (value + 1)
+            {
+                case 1: return "Имя пользователя:";
+                case 2: return "Фамилия пользователя:";
+                case 3: return "Возраст пользователя:";
+                case 4: return "Наличие животных у пользователя:";
+                case 5: return "Количество животных пользователя:";
+                case 6: return "Клички животных пользователя:";
+                case 7: return "Наличие любимых цветов у пользователя:";
+                case 8: return "Количество любимых цветов пользователя:";
+                case 9: return "Любимые цвета пользователя:";
+                default: return "Такого пункта в данной анкете нет!";
+            }
+        }
+
+        /// <summary>
+        /// Метод, собирающий любимые цвета пользователя, перечисляемые им попорядку, в одномерный массив. Метод возвращает собранный массив.
+        /// </summary>
+        /// <param name="numberColors"></param>
+        /// <returns></returns>
+        static string[] InputColors(int numberColors)
+        {
+            string[] inputColors = new string[numberColors];
+
+            for (int i = 0; i < numberColors; i++)
+            {
+                Console.WriteLine("Введите {0}-й любимый цвет:", (i + 1));
+                inputColors[i] = CheckingTexString(Console.ReadLine());
+            }
+
+            return inputColors;
+        }
+
+        /// <summary>
+        /// Метод, который проверяет ответ пользователя о наличии у него питомца. Исходя из ответа - возвращает bool.
+        /// </summary>
+        /// <param name="Colors"></param>
+        /// <returns></returns>
+        static bool ColorsExistence(string Colors)
+        {
+            switch (Colors)
+            {
+                case "Да": case "да": case "Yes": case "yes":
+                    return true;
+                case "Нет": case "нет": case "No": case "no":
+                    return false;
                 default:
-                    Console.BackgroundColor = ConsoleColor.Yellow;
-                    Console.ForegroundColor = ConsoleColor.Red;
-
-                    Console.WriteLine("Your color is yellow!");
-                    break;
+                    Console.WriteLine("Некорректный текст ввода. Ответьте на последний вопрос повторно:");
+                    return ColorsExistence(CheckingTexString(Console.ReadLine()));
             }
-            return color;
         }
 
-        static int[] GetArrayFromConsole() // Добавление по одному элементу в массив, вместимостью в 5 интовых элементов, сортировка элементов массива по возрастанию и вывод массива в отсортированном виде на консоль
+        /// <summary>
+        /// Метод, собирающий в массив клички питомцев пользователя, перечисляемые им попорядку. Возвращает собранный массив.
+        /// </summary>
+        /// <param name="countPet"></param>
+        /// <returns></returns>
+        static string[] InputPetNames(int countPet)
         {
-            var result = new int[5];
+            string[] petNames = new string[countPet];
 
-            for (int i = 0; i < result.Length; i++)
+            for (int i = 0;i < countPet; i++ )
             {
-                Console.WriteLine("Введите элемент массива номер {0}", i + 1);
-                result[i] = int.Parse(Console.ReadLine());
+                Console.WriteLine("Введите кличку {0}-го питомца:", (i + 1));
+                petNames[i] = CheckingTexString(Console.ReadLine());
             }
 
-            int w = 0;
-            while (w != -1 * (result.Length - 1))
+            return petNames;
+        }
+
+        /// <summary>
+        /// Проверяет ответ - о наличии питомца. Если ответ некорректный - просит ввести ответ заново. Если верный - возвращает bool.
+        /// </summary>
+        /// <param name="Pet"></param>
+        /// <returns></returns>
+        static bool PetsExistence(string Pet)
+        {
+            switch (Pet)
             {
-                w = 0;
-                for (int i = 0; i <= result.Length - 2; i++)
-                {
-                    int a = result[i];
-                    int b = result[i + 1];
-                    if (result[i] > result[i + 1])
-                    {
-                        result[i] = b;
-                        result[i + 1] = a;
-                        w++;
-                    }
-                    else
-                    {
-                        w--;
-                    }
-                }
-            }
-            foreach (var number in result)
-            {
-                Console.Write(number + " ");
-            }
-
-            return result;
-        }
-
-        static int[] GetArrayFromConsoleOnly(ref int num) // должен читать введенные с клавиатуры массивы и возвращать их
-        {
-            var result = new int[num];
-
-            for (int i = 0; i < result.Length; i++)
-            {
-                Console.WriteLine("Введите элемент массива номер {0}", i + 1);
-                result[i] = int.Parse(Console.ReadLine());
-            }
-
-            return result;
-        }
-
-        static void SortArray(in int[] result, out int[] sorteddesc, out int[] sortedasc) // должен принимать параметром массив array типа данных int, сортировать его и возвращать
-        {
-            sorteddesc = SortArrayDesc(result);
-            sortedasc = SortArrayAsc(result);
-        }
-
-        static int[] SortArrayDesc(int[] result) // должен принимать параметром массив array типа данных int, сортировать его и возвращать
-        {
-            int w = 0;
-            while (w != -1 * (result.Length - 1))
-            {
-                w = 0;
-                for (int i = 0; i <= result.Length - 2; i++)
-                {
-                    int a = result[i];
-                    int b = result[i + 1];
-                    if (result[i] < result[i + 1])
-                    {
-                        result[i] = b;
-                        result[i + 1] = a;
-                        w++;
-                    }
-                    else
-                    {
-                        w--;
-                    }
-                }
-            }
-            return result;
-        }
-
-        static int[] SortArrayAsc(int[] result) // должен принимать параметром массив array типа данных int, сортировать его и возвращать
-        {
-            int w = 0;
-            while (w != -1 * (result.Length - 1))
-            {
-                w = 0;
-                for (int i = 0; i <= result.Length - 2; i++)
-                {
-                    int a = result[i];
-                    int b = result[i + 1];
-                    if (result[i] > result[i + 1])
-                    {
-                        result[i] = b;
-                        result[i + 1] = a;
-                        w++;
-                    }
-                    else
-                    {
-                        w--;
-                    }
-                }
-            }
-            return result;
-        }
-
-        //static void ShowArray(int[] arrayShow, bool boolSortAttribute = false)
-        //{
-        //    int[] resultArrayShow = arrayShow;
-
-        //    if (boolSortAttribute == true)
-        //    {
-        //        resultArrayShow = SortArray(arrayShow);
-        //    }
-        //    foreach (var number in resultArrayShow)
-        //    {
-        //        Console.Write(number + " ");
-        //    }
-        //}
-
-        static void GetName(string name)
-        {
-            Console.WriteLine("Введите имя");
-            name = Console.ReadLine();
-
-        }
-
-        static void ChangeName(ref string age)
-        {
-            Console.WriteLine("Введите имя");
-            age = Console.ReadLine();
-        }
-
-        static void GetAge(int age)
-        {
-            Console.WriteLine("Введите свой возраст");
-            age = Int32.Parse(Console.ReadLine());
-        }
-
-        static void ChangeAge(ref int age)
-        {
-            Console.WriteLine("Введите свой возраст");
-            age = Int32.Parse(Console.ReadLine());
-        }
-
-        static void BigDataOperationV1(int[] arr)
-        {
-            arr[0] = 4;
-        }
-
-        static void BigDataOperationV2(ref int[] arr)
-        {
-            arr[0] = 4;
-        }
-
-        static void BigDataOperationV3(in int[] arr)
-        {
-            arr[0] = 4;
-        }
-
-        static void BigDataOperationV4(int[] arr, int data)
-        {
-            data = 4;
-
-            arr[0] = data;
-        }
-
-        static void BigDataOperationV5(int[] arr, ref int data)
-        {
-            data = 4;
-
-            arr[0] = data;
-        }
-
-        static void BigDataOperationV6(ref int[] arr, int data)
-        {
-            data = 4;
-
-            arr[0] = data;
-        }
-
-        static void BigDataOperationV7(ref int[] arr, ref int data)
-        {
-            data = 4;
-
-            arr[0] = data;
-        }
-
-        static void BigDataOperationV8(in int[] arr, int data)
-        {
-            data = 4;
-
-            arr[0] = data;
-        }
-
-        static void BigDataOperationV9(in int[] arr, ref int data)
-        {
-            data = 4;
-
-            arr[0] = data;
-        }
-
-        static int SumNumbers(ref int num1, in int num2, out int num3, int num4)
-        {
-            // Изменяем num1 (переданное по ссылке)
-            num1 = num2;
-
-            // num2 передается по ссылке, но не изменяется
-            // num3 будет результатом суммирования num1 и num2
-            num3 = num1 + num2;
-
-            // Возвращаем результат умножения num3 на num4
-            return num3 * num4;
-        }
-
-        static void Echo(string saidworld, int deep)
-        {
-            var modif = saidworld;
-
-            if (modif.Length > 2) {
-                modif = modif.Remove(0, 2);
-            }
-            ShowTextColorForEcho(deep);
-            Console.ForegroundColor = (ConsoleColor)deep;
-            Console.WriteLine("..." + modif);
-            if (deep > 1)
-            {
-                Echo(modif, deep - 1);
-            }
-        }
-
-        static void ShowTextColorForEcho(int deep)
-        {
-            switch (deep)
-            {
-                case var deep_case when deep_case >= 1 && deep_case <= 4:
-                    Console.BackgroundColor = ConsoleColor.Red;
-
-                    break;
-
-                case var deep_case when deep_case >= 5 && deep_case <= 8:
-                    Console.BackgroundColor = ConsoleColor.Green;
-
-                    break;
-                case var deep_case when deep_case >= 9 && deep_case <= 16:
-                    Console.BackgroundColor = ConsoleColor.Cyan;
-
-                    break;
-                case var deep_case when deep_case >= 17 && deep_case <= 32:
-                    Console.BackgroundColor = ConsoleColor.Magenta;
-
-                    break;
-                case var deep_case when deep_case >= 33 && deep_case <= 64:
-                    Console.BackgroundColor = ConsoleColor.Blue;
-
-                    break;
-                case var deep_case when deep_case >= 65 && deep_case <= 1000:
-                    Console.BackgroundColor = ConsoleColor.DarkGray;
-
-                    break;
+                case "да": case "yes": case "д": case "y":
+                    return true;
+                case "нет": case "no": case "н": case "n":
+                    return false;
                 default:
-                    Console.BackgroundColor = ConsoleColor.Yellow;
-                    Console.ForegroundColor = ConsoleColor.Red;
-
-                    break;
+                    Console.WriteLine("Некорректный текст ввода. Ответьте на последний вопрос повторно:");
+                    return PetsExistence(CheckingTexString(Console.ReadLine()));
             }
         }
-
-        static decimal Factorial(int x)
+        /// <summary>
+        /// Проверяет - не является ли введённое значение пустым, является ли оно числом, а также - больше нуля или нет. Если нет - то просит ввести число повторно. Возвращает только интовое число больше 0.
+        /// </summary>
+        /// <param name="numberInt"></param>
+        /// <returns></returns>
+        static int CheckingNumberInt(string numberInt)
         {
-            if (x == 0)
+            // Проверяем, является ли ввод пустой строкой или нечисловым значением
+            if (string.IsNullOrWhiteSpace(numberInt) || !int.TryParse(numberInt, out int checkNumber))
             {
-                return 1;
+                Console.WriteLine("Некорректный ввод (введён текст или пустая строка). Ответьте на последний вопрос повторно:");
+                return CheckingNumberInt(Console.ReadLine()); 
             }
-            else
+
+            // Проверяем, что число больше 0
+            if (checkNumber <= 0)
             {
-                return x * Factorial(x - 1);
+                Console.WriteLine("Некорректный числовой ввод (число должно быть больше 0). Ответьте на последний вопрос повторно:");
+                return CheckingNumberInt(Console.ReadLine()); 
             }
+
+            return checkNumber; 
         }
 
-        private static int PowerUp(int N, byte pow)
+        /// <summary>
+        /// Проверяет текст на вшивость
+        /// </summary>
+        /// <param name="textString"></param>
+        /// <returns></returns>
+        static string CheckingTexString(string textString)
         {
-            if (pow == 0)
+            if (string.IsNullOrWhiteSpace(textString) || int.TryParse(textString, out _))
             {
-                return 1;
+                Console.WriteLine("Некорректный ввод (введено число или пустая строка). Ответьте на последний вопрос повторно:");
+                return CheckingTexString(Console.ReadLine());
             }
-            else if (pow == 1)
+
+            return textString;
+        }
+
+        /// <summary>
+        /// Метод выводит анкету-кортеж на консоль
+        /// </summary>
+        /// <param name="tuple"></param>
+        static void PrintTuple(ITuple tuple)
+        {
+            Console.WriteLine("Анкета:");
+            for (int i = 0; i < tuple.Length; i++)
             {
-                return N;
+                if (tuple[i] is int || tuple[i] is bool || tuple[i] is string)
+                {
+                    Console.WriteLine($"{i + 1}. {PointsOfProfile(i)}: {tuple[i]}");
+                }
+                else if (tuple[i] is Array)
+                {
+                    Console.WriteLine($"{i + 1}. {PointsOfProfile(i)}:");
+                    PrintArray(i + 1, (string[])tuple[i]);
+                }
             }
-            else
+
+            static void PrintArray(int i, string[] array)
             {
-                return N * PowerUp(N, --pow);
+                for (int j = 0; j < array.Length; j++)
+                {
+                    Console.WriteLine($"{i}.{j + 1}. {array[j]}");
+                }
             }
         }
 
         public static void Main(string[] args)
         {
-            Console.WriteLine(Factorial(20));
-            //Console.WriteLine("Напишите что-то");
-            //var str = Console.ReadLine();
-
-            //Console.WriteLine("Укажите глубину эха");
-            //var deep = int.Parse(Console.ReadLine());
-
-            //Echo(str, deep);
-
-            //var (name, age) = ("Евгения", 27);
-
-            //Console.WriteLine("Мое имя: {0}", name);
-            //Console.WriteLine("Мой возраст: {0}", age);
-
-            //Console.Write("Введите имя: ");
-            //name = Console.ReadLine();
-            //Console.Write("Введите возрас с цифрами:");
-            //age = Convert.ToInt32(Console.ReadLine());
-
-            //Console.WriteLine("Ваше имя: {0}", name);
-            //Console.WriteLine("Ваш возраст: {0}", age);
-
-            ///
-
-            //(string name, int age) anketa;
-
-            //Console.Write("Введите имя: ");
-            //anketa.name = Console.ReadLine();
-            //Console.Write("Введите возраст с цифрами: ");
-            //anketa.age = Convert.ToInt32(Console.ReadLine());
-
-            //Console.WriteLine("Ваше имя: {0}", anketa.name);
-            //Console.WriteLine("Ваш возраст: {0}", anketa.age);
-
-            //var favcolors = new string[3];
-
-            //for (int i = 0; i < favcolors.Length; i++)
-            //{
-            //    favcolors[i] = ShowColor(name, age);
-            //}
-
-            //Console.WriteLine("Ваши любимые цвета:");
-            //foreach (var color in favcolors)
-            //{
-            //    Console.WriteLine(color);
-            //}
-
-            //Задание 5.2.15
-            //var array = GetArrayFromConsoleOnly(3);
-            //var sortedarray = SortArray(array);
-
-            //var array2 = GetArrayFromConsoleOnly(10);
-            //ShowArray(array2, true);
-
-            //var someName = "Leo";
-            //Console.WriteLine(someName);
-
-            //var someAge = 18;
-            //Console.WriteLine(someAge);
-
-            //GetAge(someAge);
-            //Console.WriteLine(someAge);
-
-            //GetName(someName);
-            //Console.WriteLine(someName);
-
-            //ChangeAge(ref someAge);
-            //Console.WriteLine(someAge);
-
-            //ChangeName(ref someName);
-            //Console.WriteLine(someName);
-
-            //var arr = new int[] { 1, 2, 3 };
-            //var data = 5;
-
-            //BigDataOperationV1(arr);
-            //Console.WriteLine(arr[0]);
-
-            //BigDataOperationV2(ref arr);
-            //Console.WriteLine(arr[0]);
-
-            //BigDataOperationV3(arr);
-            //Console.WriteLine(arr[0]);
-
-            //BigDataOperationV4(arr, data);
-            //Console.WriteLine(arr[0]);
-
-            //BigDataOperationV5(arr, ref data);
-            //Console.WriteLine(arr[0]);
-
-            //BigDataOperationV6(ref arr, data);
-            //Console.WriteLine(arr[0]);
-
-            //BigDataOperationV7(ref arr, ref data);
-            //Console.WriteLine(arr[0]);
-
-            //BigDataOperationV8(arr, data);
-            //Console.WriteLine(arr[0]);
-
-            //BigDataOperationV9(arr, ref data);
-            //Console.WriteLine(arr[0]);
+            var tuple = UserDataEntry();
+            PrintTuple(tuple);
         }
     }
 }
