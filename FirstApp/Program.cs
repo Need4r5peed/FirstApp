@@ -11,6 +11,35 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FirstApp
 {
+    class Rectangle
+    {
+        public int a;
+        public int b;
+
+        public Rectangle()
+        {
+            a = 6;
+            b = 4;
+        }
+
+        public Rectangle(int Rec)
+        {
+            a = Rec;
+            b = Rec;
+        }
+
+        public Rectangle(int aRec, int bRec)
+        {
+            a = aRec;
+            b = bRec;
+        }
+
+        public int Square()
+        {
+            return a * b;
+        }
+    }
+    
     class Pen
     {
         public string color;
