@@ -129,6 +129,20 @@ namespace FirstApp
         }
     }
 
+    class TrafficLight
+    {
+        private void ChangeColor(string color)
+        { 
+        
+        }
+
+        public string GetColor()
+        {
+            return color;
+        }
+    }
+
+
     /// <summary>
     /// Класс, описывающий геометрическую фигуру - круг.
     /// </summary>
