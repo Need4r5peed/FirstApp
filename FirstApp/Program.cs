@@ -2,6 +2,7 @@
 using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Globalization;
+using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading.Channels;
@@ -102,6 +103,69 @@ namespace FirstApp
             {
                 Console.WriteLine("Автобус пуст!");
             }
+        }
+    }
+
+    /// <summary>
+    /// Класс, описывающий геометрическую фигуру - треугольник.
+    /// </summary>
+    class Triangle
+    {
+        public int sideA;
+        public int sideB;
+        public int sideC;
+
+        static double PerimeterFigure(int sideA, int sideB, int sideC)
+        {
+            double perimeter = sideA + sideB + sideC;
+            return perimeter;
+        }
+
+        static double AreaFigure(int sideA, int sideB, int sideC)
+        {
+            double semiPerimeter = PerimeterFigure(sideA, sideB, sideC) / 2;
+            double area = Math.Sqrt(semiPerimeter * (semiPerimeter - sideA) * (semiPerimeter - sideB) * (semiPerimeter - sideC));
+            return area;
+        }
+    }
+
+    /// <summary>
+    /// Класс, описывающий геометрическую фигуру - круг.
+    /// </summary>
+    class Circle
+    {
+        public int sideR;
+
+        static double PerimeterFigure(int sideR)
+        {
+            double perimeter = 2 * Math.PI * sideR;
+            return perimeter;
+        }
+
+        static double AreaFigure(int sideR)
+        {
+            double area = (PerimeterFigure(sideR) / 2 * sideR) ;
+            return area;
+        }
+    }
+
+    /// <summary>
+    /// Класс, описывающий геометрическую фигуру - квадрат.
+    /// </summary>
+    class Square
+    {
+        public int sideA;
+
+        static double PerimeterFigure(int sideA)
+        {
+            double perimeter = sideA * 4;
+            return perimeter;
+        }
+
+        static double AreaFigure(int sideA)
+        {
+            double area = sideA * sideA;
+            return area;
         }
     }
 
