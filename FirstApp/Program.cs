@@ -183,6 +183,102 @@ namespace FirstApp
         }
     }
 
+    class User
+    {
+        private int age;
+        private string login;
+        private string email1;
+        private string email2;
+
+        public int Age
+        {
+            get
+            {
+                return age;
+            }
+
+            set
+            {
+                if (value < 18)
+                {
+                    Console.WriteLine("Возраст должен быть не меньше 18");
+                }
+                else
+                {
+                    age = value;
+                }
+            }
+        }
+
+        public string Login
+        {
+            get
+            {
+                return login;
+            }
+
+            set
+            {
+                if (value.Length < 3)
+                {
+                    Console.WriteLine("Логин должен состоять миним из 3-х символов");
+                }
+                else
+                {
+                    login = value;
+                }
+            }
+        }
+
+        public string Email1
+        {
+            get
+            {
+                return email1;
+            }
+
+            set
+            {
+                int a = 0;
+                foreach (char symbol in value)
+                {
+                    if (symbol == '@')
+                    {
+                        a++;
+                    }
+                }
+                if (a == 0)
+                {
+                    Console.WriteLine("В названии почты отсутствует @");
+                }
+                else
+                {
+                    email1 = value;
+                }
+            }
+        }
+
+        public string Email2
+        {
+            get
+            {
+                return email2;
+            }
+
+            set
+            {
+                if (!value.Contains('@'))
+                {
+                    Console.WriteLine("Неверный формат адреса электронной почты");
+                }
+                else
+                {
+                    email2 = value;
+                }
+            }
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -198,8 +294,7 @@ namespace FirstApp
         static Department GetCurrentDepartment()
         {
             // logic
-            Department One = ;
-            return Department One;
+            return;
         }
     }
 }
