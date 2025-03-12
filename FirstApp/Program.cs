@@ -85,6 +85,34 @@ namespace FirstApp
             Console.WriteLine("Привет, {0}, я интеллектуальный помощник {1}", name, this.name);
         }
     }
+
+    class BaseClass
+    {
+        protected string Name;
+
+        public BaseClass(string name)
+        {
+            Name = name;
+        }
+    }
+
+    class DerivedClass: BaseClass
+    {
+        public string Description;
+
+        public int Counter;
+
+        public DerivedClass(string name, string description): base(name)
+        {
+            description = Description;
+        }
+
+        public DerivedClass(string name, string description, int counter) : this(name, description)
+        {
+            counter = Counter;
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
