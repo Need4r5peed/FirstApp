@@ -19,18 +19,48 @@ namespace FirstApp
         public int Salary;
     }
 
-    class ProjectManager: Employee
+    class ProjectManager : Employee
     {
         public string ProjectName;
     }
 
-    class Developer: Employee
+    class Developer : Employee
     {
-        public string ProjectLanguage;
+        public string ProgrammingLanguage;
+    }
+
+    class Vegetables
+    {
+        public string enName;
+        public string ruName;
+        public string Color;
+    }
+
+    class Fruit: Vegetables
+    {
+        public string typeFruit;
+    }
+
+    class RootVegetables: Vegetables
+    {
+        public string typeRootVegetables;
+    }
+
+    class VarietyFruit : Fruit
+    {
+        public string nameFruitVariety;
+    }
+
+    class VarietyRootVegetables : RootVegetables
+    {
+        public string nameRootVegetablesVariety;
     }
 
     class Program
     {
-        
+        static void Main(string[] args)
+        {
+
+        }
     }
 }
