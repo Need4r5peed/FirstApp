@@ -88,38 +88,30 @@ namespace FirstApp
 
     class BaseClass
     {
-        protected string Name;
-
-        public BaseClass(string name)
+        public virtual int Counter
         {
-            Name = name;
-        }
-
-        public virtual void Display()
-        {
-            Console.WriteLine("Метод класса BaseClass");
+            get;
+            set;
         }
     }
 
-    class DerivedClass: BaseClass
+    class DerivedClass : BaseClass
     {
-        public string Description;
+        private int counter;
 
-        public int Counter;
-
-        public DerivedClass(string name, string description): base(name)
+        public override int Counter
         {
-            description = Description;
-        }
-
-        public DerivedClass(string name, string description, int counter) : this(name, description)
-        {
-            counter = Counter;
-        }
-
-        public override void Display()
-        {
-            Console.WriteLine("Метод класса DerivedClass");
+            get
+            {
+                return counter;
+            }
+            set
+            {
+                if (counter >= 0)
+                {
+                    counter = value;
+                }
+            }
         }
     }
 
