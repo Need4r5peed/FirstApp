@@ -86,32 +86,43 @@ namespace FirstApp
         }
     }
 
-    class BaseClass
+    class A
     {
-        public virtual int Counter
+        public virtual void Display()
         {
-            get;
-            set;
+            Console.WriteLine("A");
         }
     }
 
-    class DerivedClass : BaseClass
+    class B : A
     {
-        private int counter;
-
-        public override int Counter
+        public new void Display()
         {
-            get
-            {
-                return counter;
-            }
-            set
-            {
-                if (counter >= 0)
-                {
-                    counter = value;
-                }
-            }
+            Console.WriteLine("B");
+        }
+    }
+
+    class C : A
+    {
+        public override void Display()
+        {
+            Console.WriteLine("C");
+        }
+    }
+
+    class D : B
+    {
+        public new void Display()
+        {
+            Console.WriteLine("D");
+        }
+    }
+
+    class E : C
+    {
+        public new void Display()
+        {
+            Console.WriteLine("E");
         }
     }
 
@@ -119,12 +130,8 @@ namespace FirstApp
     {
         static void Main(string[] args)
         {
-            SmartHelper helper = new SmartHelper("Олег");
-            helper.Greetings("Грег");
 
-            Console.ReadKey();
         }
 
     }
-
 }
