@@ -126,6 +126,27 @@ namespace FirstApp
         }
     }
 
+    class Objc
+    {
+        public int Value;
+
+        public static Objc operator + (Objc a, Objc b)
+        {
+            return new Objc
+            {
+                Value = a.Value + b.Value
+            };
+        }
+
+        public static Objc operator - (Objc a, Objc b)
+        {
+            return new Objc
+            {
+                Value = a.Value - b.Value
+            };
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
