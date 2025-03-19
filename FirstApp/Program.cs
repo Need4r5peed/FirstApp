@@ -12,160 +12,32 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FirstApp
 {
-    class Employee
+    abstract class ComputerPart
     {
-        public string Name;
-        public int Age;
-        public int Salary;
+        public abstract void Work();
     }
 
-    class ProjectManager : Employee
+    class Processor : ComputerPart
     {
-        public string ProjectName;
-    }
-
-    class Developer : Employee
-    {
-        public string ProgrammingLanguage;
-    }
-
-    class Vegetables
-    {
-        public string enName;
-        public string ruName;
-        public string Color;
-    }
-
-    class Fruit: Vegetables
-    {
-        public string typeFruit;
-    }
-
-    class RootVegetables: Vegetables
-    {
-        public string typeRootVegetables;
-    }
-
-    class VarietyFruit : Fruit
-    {
-        public string nameFruitVariety;
-    }
-
-    class VarietyRootVegetables : RootVegetables
-    {
-        public string nameRootVegetablesVariety;
-    }
-    class Obj
-    {
-        private string name;
-        private string owner;
-        private int length;
-        private int count;
-
-        public Obj(string name, string ownerName, int objLength, int count)
-        {
-            this.name = name;
-            owner = ownerName;
-            length = objLength;
-            this.count = count;
-        }
-    }
-
-    class SmartHelper
-    {
-        private string name;
-
-        public SmartHelper(string name)
-        {
-            this.name = name;
-        }
-
-        public void Greetings(string name)
-        {
-            Console.WriteLine("Привет, {0}, я интеллектуальный помощник {1}", name, this.name);
-        }
-    }
-
-    class A
-    {
-        public virtual void Display()
-        {
-            Console.WriteLine("A");
-        }
-    }
-
-    class B : A
-    {
-        public new void Display()
-        {
-            Console.WriteLine("B");
-        }
-    }
-
-    class C : A
-    {
-        public override void Display()
-        {
-            Console.WriteLine("C");
-        }
-    }
-
-    class D : B
-    {
-        public new void Display()
-        {
-            Console.WriteLine("D");
-        }
-    }
-
-    class E : C
-    {
-        public new void Display()
-        {
-            Console.WriteLine("E");
-        }
-    }
-
-    class Objc
-    {
-        public int Value;
-
-        public static Objc operator + (Objc a, Objc b)
-        {
-            return new Objc
-            {
-                Value = a.Value + b.Value
-            };
-        }
-
-        public static Objc operator - (Objc a, Objc b)
-        {
-            return new Objc
-            {
-                Value = a.Value - b.Value
-            };
-        }
-    }
-
-    class IndexingClass
-    {
-        private int[] array;
-
-        public IndexingClass(int[] array)
-        {
-            this.array = array;
-        }
-
-        public int this[int index]
+        public override void Work()
         { 
-            get
-            {
-                return array[index];
-            }
-            set
-            {
-                array[index] = value;
-            }
+        
+        }
+    }
+
+    class MotherBoard : ComputerPart
+    {
+        public override void Work()
+        {
+
+        }
+    }
+
+    class GraphicCard : ComputerPart
+    {
+        public override void Work()
+        {
+
         }
     }
 
