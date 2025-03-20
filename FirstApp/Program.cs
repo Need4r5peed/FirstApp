@@ -12,37 +12,47 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FirstApp
 {
-    class Car<T1>
+    class Car<T1> where T1: Engine
     {
         public T1 Engine;
 
-        public virtual void ChangePart<T2>(T2 newPart)
+        public virtual void ChangePart<T2>(T2 newPart) where T2: CarPart
         { 
         
         }
     }
 
-    class ElectricEngine
-    {
-
-    }
-
-    class GasEngine
-    {
-
-    }
-
-    class Battery
+    class Engine
     { 
     
     }
 
-    class Differential
+    class CarPart
+    {
+
+    }
+
+    class ElectricEngine: Engine
+    {
+
+    }
+
+    class GasEngine: Engine
+    {
+
+    }
+
+    class Battery: CarPart
     { 
     
     }
 
-    class Wheel
+    class Differential: CarPart
+    { 
+    
+    }
+
+    class Wheel: CarPart
     { 
     
     }
