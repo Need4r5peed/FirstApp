@@ -12,33 +12,11 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FirstApp
 {
-    abstract class ComputerPart
+    class Obj
     {
-        public abstract void Work();
-    }
-
-    class Processor : ComputerPart
-    {
-        public override void Work()
-        { 
-        
-        }
-    }
-
-    class MotherBoard : ComputerPart
-    {
-        public override void Work()
-        {
-
-        }
-    }
-
-    class GraphicCard : ComputerPart
-    {
-        public override void Work()
-        {
-
-        }
+        public string Name;
+        public string Description;
+        public static int MaxValue = 2000;
     }
 
     class Program
