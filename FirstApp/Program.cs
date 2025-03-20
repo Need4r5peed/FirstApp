@@ -18,6 +18,16 @@ namespace FirstApp
         public string Description;
         public static int MaxValue = 2000;
     }
+    class Helper
+    {
+        public static void Swap(ref int a, ref int b)
+        {
+            int c = b;
+            b = a;
+            a = c;
+
+        }
+    }
 
     class Program
     {
