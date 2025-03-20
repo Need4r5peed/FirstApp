@@ -16,8 +16,19 @@ namespace FirstApp
     {
         public string Name;
         public string Description;
-        public static int MaxValue = 2000;
+
+        public static string Parent;
+        public static int DaysInWeek;
+        public static int MaxValue;
+
+        static Obj()
+        {
+            Parent = "System.Object";
+            DaysInWeek = 7;
+            MaxValue = 2000;
     }
+    }
+
     class Helper
     {
         public static void Swap(ref int a, ref int b)
