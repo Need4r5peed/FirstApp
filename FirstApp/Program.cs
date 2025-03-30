@@ -24,6 +24,8 @@ namespace DriveManager
             }
 
             GetCatalogs(); //   Вызов метода получения директорий
+            Console.WriteLine();
+            NumberOfObjectsInCatalog();
         }
 
         static void GetCatalogs()
@@ -44,6 +46,23 @@ namespace DriveManager
                 foreach (string s in files)   // Выведем их все
                     Console.WriteLine(s);
             }
+        }
+
+        static void NumberOfObjectsInCatalog()
+        {
+            try
+            {
+                string dirName = @"C:\\"; // Прописываем путь к корневой директории MacOS (для Windows скорее всего тут будет "C:\\")
+                if (Directory.Exists(dirName)) // Проверим, что директория существует
+                {
+                    Console.WriteLine("Количество объектов:");
+                    Console.WriteLine(Directory.GetDirectories(dirName).Length + Directory.GetFiles(dirName).Length);
+                }
+            }
+            catch (DirectoryNotFoundException e) { Console.WriteLine($"Ошибка: {e.GetType().Name} - {e.Message} \n(находящейся в {e.StackTrace})"); }
+            catch (Exception e) when (e is NotSupportedException || e is ArgumentException) { Console.WriteLine($"Ошибка: {e.GetType().Name} - {e.Message} \n(находящейся в {e.StackTrace})"); }
+            catch (Exception e) { Console.WriteLine($"Другая ошибка: {e.Message} \n(находящейся в {e.StackTrace})"); }
+            finally { Console.WriteLine("NumberOfObjectsInCatalog закончил работу!"); }
         }
     }
 }
