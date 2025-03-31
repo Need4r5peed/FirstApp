@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DriveManager
 {
@@ -52,11 +53,49 @@ namespace DriveManager
         {
             try
             {
+                Action numberOfObjectsText = null;
+                Action NumberOfObjects = null;
+
                 string dirName = @"C:\\"; // Прописываем путь к корневой директории MacOS (для Windows скорее всего тут будет "C:\\")
-                if (Directory.Exists(dirName)) // Проверим, что директория существует
+                DirectoryInfo dirInfo = new DirectoryInfo(dirName);
+
+                if (dirInfo.Exists)
                 {
-                    Console.WriteLine("Количество объектов:");
-                    Console.WriteLine(Directory.GetDirectories(dirName).Length + Directory.GetFiles(dirName).Length);
+                    numberOfObjectsText = () => Console.WriteLine("Количество объектов:");
+                    NumberOfObjects = () => Console.WriteLine(dirInfo.GetDirectories().Length + dirInfo.GetFiles().Length);
+                    numberOfObjectsText();
+                    NumberOfObjects();
+                }
+
+                string newDirName = @"C:\\SkillFactory_Task";
+                string newFolderName = "NewFolder";
+
+                DirectoryInfo newDirInfo = new DirectoryInfo(newDirName);
+                if (!newDirInfo.Exists)
+                {
+                    newDirInfo.Create();
+
+                    newDirInfo.CreateSubdirectory(newFolderName);
+                }
+
+                if (numberOfObjectsText != null && NumberOfObjects != null)
+                {
+                    numberOfObjectsText(); 
+                    NumberOfObjects();   
+                }
+
+                string oldDirName = @"C:\\SkillFactory_Task";
+
+                DirectoryInfo oldDirInfo = new DirectoryInfo(oldDirName);
+                if (oldDirInfo.Exists)
+                {
+                    oldDirInfo.Delete(true);
+                }
+
+                if (numberOfObjectsText != null && NumberOfObjects != null)
+                {
+                    numberOfObjectsText();
+                    NumberOfObjects();
                 }
             }
             catch (DirectoryNotFoundException e) { Console.WriteLine($"Ошибка: {e.GetType().Name} - {e.Message} \n(находящейся в {e.StackTrace})"); }
@@ -64,5 +103,7 @@ namespace DriveManager
             catch (Exception e) { Console.WriteLine($"Другая ошибка: {e.Message} \n(находящейся в {e.StackTrace})"); }
             finally { Console.WriteLine("NumberOfObjectsInCatalog закончил работу!"); }
         }
+
+        DirectoryInfo dirInfo = new DirectoryInfo(@"/" /* Или С:\\ для Windows */ );
     }
 }
