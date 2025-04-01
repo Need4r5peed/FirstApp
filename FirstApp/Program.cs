@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.CompilerServices;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DriveManager
@@ -8,102 +10,57 @@ namespace DriveManager
     {
         static void Main(string[] args)
         {
-            // получим системные диски
-            DriveInfo[] drives = DriveInfo.GetDrives();
+            //FileWriter File = new FileWriter();
+            //File.AddingListToTextFile();
 
-            // Пробежимся по дискам и выведем их свойства
-            foreach (DriveInfo drive in drives)
-            {
-                Console.WriteLine($"Название: {drive.Name}");
-                Console.WriteLine($"Тип: {drive.DriveType}");
-                if (drive.IsReady)
-                {
-                    Console.WriteLine($"Объем: {drive.TotalSize}");
-                    Console.WriteLine($"Свободно: {drive.TotalFreeSpace}");
-                    Console.WriteLine($"Метка: {drive.VolumeLabel}");
-                }
-            }
-
-            GetCatalogs(); //   Вызов метода получения директорий
-            Console.WriteLine();
-            NumberOfObjectsInCatalog();
+            FileReader File = new FileReader();
+            File.OutputsItsSourceCode();
         }
+    }
 
-        static void GetCatalogs()
+    class FileWriter
+    {
+        string filePath = @"C:\Users\Администратор\Trash\SkillFactory\Students.txt"; // Укажем путь
+
+        public void AddingListToTextFile()
         {
-            string dirName = @"C:\\"; // Прописываем путь к корневой директории MacOS (для Windows скорее всего тут будет "C:\\")
-            if (Directory.Exists(dirName)) // Проверим, что директория существует
+            if (!File.Exists(filePath)) // Проверим, существует ли файл по данному пути
             {
-                Console.WriteLine("Папки:");
-                string[] dirs = Directory.GetDirectories(dirName);  // Получим все директории корневого каталога
-
-                foreach (string d in dirs) // Выведем их все
-                    Console.WriteLine(d);
-
-                Console.WriteLine();
-                Console.WriteLine("Файлы:");
-                string[] files = Directory.GetFiles(dirName);// Получим все файлы корневого каталога
-
-                foreach (string s in files)   // Выведем их все
-                    Console.WriteLine(s);
+                //   Если не существует - создаём и записываем в строку
+                using (StreamWriter sw = File.CreateText(filePath))  // Конструкция Using (будет рассмотрена в последующих юнитах)
+                {
+                    sw.WriteLine("Олег");
+                    sw.WriteLine("Дмитрий");
+                    sw.WriteLine("Иван");
+                }
+            }
+            // Откроем файл и прочитаем его содержимое
+            using (StreamReader sr = File.OpenText(filePath))
+            {
+                string str = "";
+                while ((str = sr.ReadLine()) != null) // Пока не кончатся строки - считываем из файла по одной и выводим в консоль
+                {
+                    Console.WriteLine(str);
+                }
             }
         }
+    }
 
-        static void NumberOfObjectsInCatalog()
+    class FileReader
+    { 
+        private string filePath = @"D:\VS_Projects\FirstApp\FirstApp\Program.cs";
+
+        public void OutputsItsSourceCode()
         {
-            try
+            // Откроем файл и прочитаем его содержимое
+            using (StreamReader sr = File.OpenText(filePath))
             {
-                Action numberOfObjectsText = null;
-                Action NumberOfObjects = null;
-
-                string dirName = @"C:\\"; // Прописываем путь к корневой директории MacOS (для Windows скорее всего тут будет "C:\\")
-                DirectoryInfo dirInfo = new DirectoryInfo(dirName);
-
-                if (dirInfo.Exists)
+                string str = "";
+                while ((str = sr.ReadLine()) != null) // Пока не кончатся строки - считываем из файла по одной и выводим в консоль
                 {
-                    numberOfObjectsText = () => Console.WriteLine("Количество объектов:");
-                    NumberOfObjects = () => Console.WriteLine(dirInfo.GetDirectories().Length + dirInfo.GetFiles().Length);
-                    numberOfObjectsText();
-                    NumberOfObjects();
-                }
-
-                string newDirName = @"C:\\SkillFactory_Task";
-                string newFolderName = "NewFolder";
-
-                DirectoryInfo newDirInfo = new DirectoryInfo(newDirName);
-                if (!newDirInfo.Exists)
-                {
-                    newDirInfo.Create();
-
-                    newDirInfo.CreateSubdirectory(newFolderName);
-                }
-
-                if (numberOfObjectsText != null && NumberOfObjects != null)
-                {
-                    numberOfObjectsText(); 
-                    NumberOfObjects();   
-                }
-
-                string oldDirName = @"C:\\SkillFactory_Task";
-
-                DirectoryInfo oldDirInfo = new DirectoryInfo(oldDirName);
-                if (oldDirInfo.Exists)
-                {
-                    oldDirInfo.Delete(true);
-                }
-
-                if (numberOfObjectsText != null && NumberOfObjects != null)
-                {
-                    numberOfObjectsText();
-                    NumberOfObjects();
+                    Console.WriteLine(str);
                 }
             }
-            catch (DirectoryNotFoundException e) { Console.WriteLine($"Ошибка: {e.GetType().Name} - {e.Message} \n(находящейся в {e.StackTrace})"); }
-            catch (Exception e) when (e is NotSupportedException || e is ArgumentException) { Console.WriteLine($"Ошибка: {e.GetType().Name} - {e.Message} \n(находящейся в {e.StackTrace})"); }
-            catch (Exception e) { Console.WriteLine($"Другая ошибка: {e.Message} \n(находящейся в {e.StackTrace})"); }
-            finally { Console.WriteLine("NumberOfObjectsInCatalog закончил работу!"); }
         }
-
-        DirectoryInfo dirInfo = new DirectoryInfo(@"/" /* Или С:\\ для Windows */ );
     }
 }
