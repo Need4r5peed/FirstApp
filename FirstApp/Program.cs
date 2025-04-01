@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
 using static System.Net.Mime.MediaTypeNames;
@@ -10,11 +11,12 @@ namespace DriveManager
     {
         static void Main(string[] args)
         {
-            //FileWriter File = new FileWriter();
+            FileWriter File = new FileWriter();
             //File.AddingListToTextFile();
+            File.CreatingFileOrAddingDateAboutLastLaunch();
 
-            FileReader File = new FileReader();
-            File.OutputsItsSourceCode();
+            //FileReader File = new FileReader();
+            //File.OutputsItsSourceCode();
         }
     }
 
@@ -32,6 +34,41 @@ namespace DriveManager
                     sw.WriteLine("Олег");
                     sw.WriteLine("Дмитрий");
                     sw.WriteLine("Иван");
+                }
+            }
+            // Откроем файл и прочитаем его содержимое
+            using (StreamReader sr = File.OpenText(filePath))
+            {
+                string str = "";
+                while ((str = sr.ReadLine()) != null) // Пока не кончатся строки - считываем из файла по одной и выводим в консоль
+                {
+                    Console.WriteLine(str);
+                }
+            }
+        }
+
+        public void CreatingFileOrAddingDateAboutLastLaunch()
+        {
+            var fileInfo = new FileInfo(filePath);
+            
+            if (!File.Exists(filePath)) // Проверим, существует ли файл по данному пути
+            {
+                //   Если не существует - создаём и записываем в строку
+                using (StreamWriter sw = File.CreateText(filePath))  // Конструкция Using (будет рассмотрена в последующих юнитах)
+                {
+                    sw.WriteLine("Олег");
+                    sw.WriteLine("Дмитрий");
+                    sw.WriteLine("Иван");
+                    sw.WriteLine($"Время последнего запуска файла: {DateTime.Now}");
+                }
+            }
+
+            if (File.Exists(filePath)) // Проверим, существует ли файл по данному пути
+            {
+                //   Если не существует - создаём и записываем в строку
+                using (StreamWriter sw = fileInfo.AppendText())  // Конструкция Using (будет рассмотрена в последующих юнитах)
+                {
+                    sw.WriteLine($"Время последнего запуска файла: {DateTime.Now}");
                 }
             }
             // Откроем файл и прочитаем его содержимое
