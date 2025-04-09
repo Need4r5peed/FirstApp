@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection.PortableExecutable;
-using System.Runtime.CompilerServices;
-using System.Text.Json;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FirstApp91
 {
@@ -13,9 +6,10 @@ namespace FirstApp91
     {
         static void Main(string[] args)
         {
-            Exception exception = new Exception();
+            Exception exception = new Exception("Произошло исключение!");
 
             exception.Data.Add("Дата исключения: ", DateTime.Now);
+            exception.HelpLink = "www.skillfactory.ru/";
         }
     }
 }
