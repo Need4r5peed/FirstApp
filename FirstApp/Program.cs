@@ -1,28 +1,23 @@
 ﻿using System;
 
-namespace FirstApp9_2
+namespace FirstApp9_3
 {
     class Program
     {
+        
+        public delegate int DelegateMinus(int a, int b);
+
         static void Main(string[] args)
         {
-            try
-            {
-                throw new RankException("Произошла ошибка RankException");
-            }
-            catch(Exception ex) when (ex is RankException)
-            {
-                Console.WriteLine(ex.GetType());
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.GetType());
-            }
-            finally
-            {
-                Console.WriteLine();
-            }
-            Console.WriteLine("Программа закончила работу!");
+            DelegateMinus minusDelegate = MinusNumber;
+            int result = minusDelegate.Invoke(500, 100);
+            Console.WriteLine(result);
         }
+
+        static int MinusNumber(int a, int b)
+        {
+            return a - b;
+        }
+
     }
 }
