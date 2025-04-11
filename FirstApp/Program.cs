@@ -5,22 +5,23 @@ namespace FirstApp9_3
     class Program
     {
         
-        public delegate int DelegateMinus(int a, int b);
+        public delegate void DelegateArithmeticOperations(int a, int b);
 
         static void Main(string[] args)
         {
-            DelegateMinus minusDelegate = MinusNumber;
-            int result1 = minusDelegate.Invoke(500, 100);
-            Console.WriteLine(result1);
-
-            int result2 = minusDelegate(500, 100);
-            Console.WriteLine(result2);
+            DelegateArithmeticOperations delegateArithmeticOperations = MinusNumbers;
+            delegateArithmeticOperations += PlusNumbers;
+            delegateArithmeticOperations.Invoke(100, 200);
         }
 
-        static int MinusNumber(int a, int b)
+        static void MinusNumbers(int a, int b)
         {
-            return a - b;
+            Console.WriteLine(a - b);
         }
 
+        static void PlusNumbers(int a, int b)
+        {
+            Console.WriteLine(a + b);
+        }
     }
 }
