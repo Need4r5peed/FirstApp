@@ -8,11 +8,15 @@ namespace FirstApp9_2
         {
             try
             {
-                throw new ArgumentOutOfRangeException("Произошла ошибка ArgumentOutOfRangeException");
+                throw new RankException("Произошла ошибка RankException");
             }
-            catch(ArgumentOutOfRangeException ex)
+            catch(Exception ex) when (ex is RankException)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.GetType());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.GetType());
             }
             finally
             {
