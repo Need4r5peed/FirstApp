@@ -10,7 +10,7 @@ namespace FirstApp9_3
         static void Main(string[] args)
         {
             DelegateArithmeticOperations delegateArithmeticOperations = MinusNumbers;
-            delegateArithmeticOperations += PlusNumbers;
+            delegateArithmeticOperations -= PlusNumbers;
             delegateArithmeticOperations.Invoke(100, 200);
         }
 
