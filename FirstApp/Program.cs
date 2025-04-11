@@ -10,8 +10,11 @@ namespace FirstApp9_3
         static void Main(string[] args)
         {
             DelegateMinus minusDelegate = MinusNumber;
-            int result = minusDelegate.Invoke(500, 100);
-            Console.WriteLine(result);
+            int result1 = minusDelegate.Invoke(500, 100);
+            Console.WriteLine(result1);
+
+            int result2 = minusDelegate(500, 100);
+            Console.WriteLine(result2);
         }
 
         static int MinusNumber(int a, int b)
