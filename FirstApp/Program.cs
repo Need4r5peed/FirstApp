@@ -7,24 +7,20 @@ namespace FirstApp9_3
         
         public delegate void DelegateArithmeticOperations(int a, int b);
 
-        delegate void ShowMessageDelegate();
-        delegate int SumDelegate(int a, int b, int c);
-        delegate bool CheckLengthDelegate(string _row);
-
         static void Main(string[] args)
         {
             //DelegateArithmeticOperations delegateArithmeticOperations = MinusNumbers;
             //delegateArithmeticOperations -= PlusNumbers;
             //delegateArithmeticOperations.Invoke(100, 200);
 
-            ShowMessageDelegate showMessageDelegate = ShowMessage;
+            Action showMessageDelegate = ShowMessage;
             showMessageDelegate.Invoke();
 
-            SumDelegate sumDelegate = Sum;
+            Func<int, int, int, int> sumDelegate = Sum;
             int result = sumDelegate.Invoke(1, 30, 120);
             Console.WriteLine(result);
 
-            CheckLengthDelegate checkLengthDelegate = CheckLength;
+            Predicate<string> checkLengthDelegate = CheckLength;
             bool status = checkLengthDelegate.Invoke("skill_factory");
             Console.WriteLine(status);
         }
