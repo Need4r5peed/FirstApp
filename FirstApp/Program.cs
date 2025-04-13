@@ -35,12 +35,16 @@ namespace FirstApp9_3
             //showMessageDelegate.Invoke("Hello World!");
             //Console.Read();
 
-            RandomNumberDelegate randomNumberDelegate = delegate()
-            {
-                return new Random().Next(0, 100);
-            };
-            int result = randomNumberDelegate.Invoke();
-            Console.WriteLine(result);
+            //RandomNumberDelegate randomNumberDelegate = delegate()
+            //{
+            //    return new Random().Next(0, 100);
+            //};
+            //int result = randomNumberDelegate.Invoke();
+            //Console.WriteLine(result);
+            //Console.Read();
+
+            ShowMessageDelegate showMessageDelegate = (string _message) => Console.WriteLine(_message);
+            showMessageDelegate.Invoke("Hello World!");
             Console.Read();
         }
 
