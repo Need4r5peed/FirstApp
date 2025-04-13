@@ -9,6 +9,8 @@ namespace FirstApp9_3
 
         delegate void ShowMessageDelegate(string _message);
 
+        delegate int RandomNumberDelegate();
+
         static void Main(string[] args)
         {
             //DelegateArithmeticOperations delegateArithmeticOperations = MinusNumbers;
@@ -26,12 +28,25 @@ namespace FirstApp9_3
             //bool status = checkLengthDelegate.Invoke("skill_factory");
             //Console.WriteLine(status);
 
-            ShowMessageDelegate showMessageDelegate = delegate (string _message)
+            //ShowMessageDelegate showMessageDelegate = delegate (string _message)
+            //{
+            //    Console.WriteLine(_message);
+            //};
+            //showMessageDelegate.Invoke("Hello World!");
+            //Console.Read();
+
+            RandomNumberDelegate randomNumberDelegate = delegate()
             {
-                Console.WriteLine(_message);
+                return new Random().Next(0, 100);
             };
-            showMessageDelegate.Invoke("Hello World!");
+            int result = randomNumberDelegate.Invoke();
+            Console.WriteLine(result);
             Console.Read();
+        }
+
+        static int RandomNumber()
+        {
+            return new Random().Next(0, 100);
         }
 
         static void MinusNumbers(int a, int b)
