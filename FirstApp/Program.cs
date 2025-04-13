@@ -6,23 +6,35 @@ namespace FirstApp9_4
     {
         public delegate Car HandlerDelegate();
 
-        static Car CarHandler()
+        public delegate void ChildInfoDelegate(Child info);
+
+        public static Car CarHandler()
         {
             return null;
         }
 
-
-        static Lexus LexusHandler()
+        public static Lexus LexusHandler()
         {
             return null;
+        }
+
+        public static void ParentInfo(Parent info)
+        {
+            Console.WriteLine(info.GetType());
         }
 
         static void Main(string[] args)
         {
             HandlerDelegate handlerDelegate = LexusHandler;
+
+            ChildInfoDelegate childInfoDelegate = ParentInfo;
+            childInfoDelegate.Invoke(new Child());
         }
     }
 
     class Car { }
     class Lexus : Car { }
+
+    class Parent { }
+    class Child : Parent { }
 }
