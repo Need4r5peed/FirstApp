@@ -43,14 +43,15 @@ namespace FirstApp9_3
             //Console.WriteLine(result);
             //Console.Read();
 
-            ShowMessageDelegate showMessageDelegate = (string _message) => Console.WriteLine(_message);
-            showMessageDelegate.Invoke("Hello World!");
-            Console.Read();
-        }
+            //ShowMessageDelegate showMessageDelegate = (string _message) => Console.WriteLine(_message);
+            //showMessageDelegate.Invoke("Hello World!");
+            //Console.Read();
 
-        static int RandomNumber()
-        {
-            return new Random().Next(0, 100);
+            RandomNumberDelegate randomNumberDelegate = () => new Random().Next(0, 100);
+
+            int result = randomNumberDelegate.Invoke();
+            Console.WriteLine(result);
+            Console.Read();
         }
 
         static void MinusNumbers(int a, int b)
