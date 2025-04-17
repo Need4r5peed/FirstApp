@@ -1,26 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FirstApp
+namespace FirstApp.Module8.Unit3.Task831
 {
-
-    class zadanie8_3
+    public class Main_Task831
     {
-        static void Mainzadanie8_3(string[] args)
+        public static void Main()
         {
-            FileWriter File = new FileWriter();
+            FileWriter_Task831 File = new FileWriter_Task831();
             //File.AddingListToTextFile();
             File.CreatingFileOrAddingDateAboutLastLaunch();
 
-            //FileReader File = new FileReader();
+            //FileReader_Task831 File = new FileReader_Task831();
             //File.OutputsItsSourceCode();
+
+            Console.WriteLine("Программа завершена...");
         }
     }
 
-    class FileWriter
+    class FileWriter_Task831
     {
         string filePath = @"C:\Users\Администратор\Trash\SkillFactory\Students.txt"; // Укажем путь
 
@@ -83,7 +83,7 @@ namespace FirstApp
         }
     }
 
-    class FileReader
+    class FileReader_Task831
     {
         private string filePath = @"D:\VS_Projects\FirstApp\FirstApp\Program.cs";
 

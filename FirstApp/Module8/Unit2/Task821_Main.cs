@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FirstApp8_2
+namespace FirstApp.Module8.Unit2.Task821
 {
-    class zadanie8_2
+    public class Main_Task821
     {
-        static void zadanie8_2_Main(string[] args)
+        public static void Main()
         {
             //// получим системные диски
             //DriveInfo[] drives = DriveInfo.GetDrives();
@@ -41,6 +40,7 @@ namespace FirstApp8_2
 
             MoveFolderToTrash(folderInfo.FullName);
 
+            Console.WriteLine("Программа завершена...");
         }
 
         static void MoveFolderToTrash(string FullNameDir)
@@ -162,3 +162,4 @@ namespace FirstApp8_2
         DirectoryInfo dirInfo = new DirectoryInfo(@"/" /* Или С:\\ для Windows */ );
     }
 }
+

@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FirstApp9_2
+namespace FirstApp.Module9.Unit2.Task921
 {
-    class Program9_2
+    public class Main_Task921
     {
-        static void Main9_2(string[] args)
+        public static void Main()
         {
             try
             {
@@ -23,6 +27,8 @@ namespace FirstApp9_2
                 Console.WriteLine();
             }
             Console.WriteLine("Программа закончила работу!");
+
+            Console.WriteLine("Программа завершена...");
         }
     }
 }

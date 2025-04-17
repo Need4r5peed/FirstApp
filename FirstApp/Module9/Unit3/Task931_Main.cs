@@ -1,17 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FirstApp9_3
+namespace FirstApp.Module9.Unit3.Task931
 {
-    class Program9_3
+    public class Main_Task931
     {
+        
+        public delegate void DelegateArithmeticOperations_Task931(int a, int b);
 
-        public delegate void DelegateArithmeticOperations(int a, int b);
+        delegate void ShowMessageDelegate_Task931(string _message);
 
-        delegate void ShowMessageDelegate(string _message);
+        delegate int RandomNumberDelegate_Task931();
 
-        delegate int RandomNumberDelegate();
-
-        static void Main9_3(string[] args)
+        public static void Main()
         {
             //DelegateArithmeticOperations delegateArithmeticOperations = MinusNumbers;
             //delegateArithmeticOperations -= PlusNumbers;
@@ -47,11 +51,13 @@ namespace FirstApp9_3
             //showMessageDelegate.Invoke("Hello World!");
             //Console.Read();
 
-            RandomNumberDelegate randomNumberDelegate = () => new Random().Next(0, 100);
+            RandomNumberDelegate_Task931 randomNumberDelegate = () => new Random().Next(0, 100);
 
             int result = randomNumberDelegate.Invoke();
             Console.WriteLine(result);
             Console.Read();
+
+            Console.WriteLine("Программа завершена...");
         }
 
         static void MinusNumbers(int a, int b)

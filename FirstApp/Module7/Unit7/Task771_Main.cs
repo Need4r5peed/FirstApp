@@ -13,9 +13,15 @@ using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace FirstApp1
+namespace FirstApp.Module7.Unit7.Task771
 {
-
+    public class Main_Task771
+    {
+        public static void Main()
+        {
+            Console.WriteLine("Программа завершена...");
+        }
+    }
     // Использую явное обозначение модификатора "internal" для классов (которое не обязательно, так как по умолчанию) - чтоб лучше воспринимать информацию при считывании доступа.
     // Также использую модификатор доступа "private" - для полей, свойств и методов вместо неявного private "по умолчанию", когда модификатор отсутствует.
 

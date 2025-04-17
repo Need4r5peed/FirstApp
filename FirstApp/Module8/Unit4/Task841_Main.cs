@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FirstApp84
+namespace FirstApp.Module8.Unit4.Task841
 {
+
     [Serializable]
-    public class Contact
+    public class Contact_Task841
     {
         public string Name { get; set; }
         public long PhoneNumber { get; set; }
         public string Email { get; set; }
 
-        public Contact(string name, long phoneNumber, string email)
+        public Contact_Task841(string name, long phoneNumber, string email)
         {
             Name = name;
             PhoneNumber = phoneNumber;
@@ -27,20 +27,21 @@ namespace FirstApp84
             writer.Write(Email);
         }
 
-        public static Contact DeSerialized(BinaryReader reader)
+        public static Contact_Task841 DeSerialized(BinaryReader reader)
         {
             string name = reader.ReadString();
             long phoneNumber = reader.ReadInt64();
             string email = reader.ToString();
-            return new Contact(name, phoneNumber, email);
+            return new Contact_Task841(name, phoneNumber, email);
         }
     }
-    class Program84
+
+    public class Main_Task841
     {
         //const string SettingsFileName = "Settings.cfg";
         const string SettingsFileName = @"C:\\Users\\Администратор\\Desktop\\BinaryFile.bin";
 
-        static void Main84(string[] args)
+        public static void Main()
         {
             ////// Пишем
             ////WriteValues();
@@ -50,7 +51,7 @@ namespace FirstApp84
             //ReadValuesMyFile();
 
             // Объект для сериализации
-            var contact = new Contact("Иван Петров", 79884534509, "ivanpetrov@skillfactory.ru");
+            var contact = new Contact_Task841("Иван Петров", 79884534509, "ivanpetrov@skillfactory.ru");
             Console.WriteLine($"Контакт под именем {contact.Name} создан");
 
             using (FileStream fileStream = new FileStream("contact.bin", FileMode.Create))
@@ -60,12 +61,14 @@ namespace FirstApp84
                 Console.WriteLine($"Контакт под именем {contact.Name} сериализован");
             }
 
-            Contact deserializedContact;
+            Contact_Task841 deserializedContact;
             using (FileStream fileStream = new FileStream("contact.bin", FileMode.Create))
             using (BinaryReader binaryReader = new BinaryReader(fileStream))
             {
-                deserializedContact = Contact.DeSerialized(binaryReader);
+                deserializedContact = Contact_Task841.DeSerialized(binaryReader);
             }
+
+            Console.WriteLine("Программа завершена...");
         }
 
         static void ReadValuesMyFile()
